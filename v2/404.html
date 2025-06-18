@@ -1,0 +1,472 @@
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    main {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .error-container {
+        max-width: 600px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 3rem;
+    }
+
+    .logo {
+        margin-bottom: 2rem;
+    }
+
+    .error-code {
+        font-size: 6rem;
+        color: #ff00aa;
+        margin: 2rem 0;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .error-title {
+        color: #00f5ff;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+
+    .error-description {
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        color: #ccc;
+    }
+
+    .links-section {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 2rem 0;
+    }
+
+    .links-section h3 {
+        color: #00f5ff;
+        margin-bottom: 1rem;
+    }
+
+    .links-section nav ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .links-section nav li {
+        margin: 0.5rem 0;
+    }
+
+    .links-section nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: color 0.2s ease;
+    }
+
+    .links-section nav a:hover {
+        color: #00f5ff;
+    }
+
+    .cta-buttons {
+        margin-top: 2rem;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #00f5ff, #ff00aa);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0.5rem;
+        display: inline-block;
+        transition: transform 0.2s ease;
+    }
+
+    .btn-secondary {
+        background: transparent;
+        border: 2px solid #00f5ff;
+        color: #00f5ff;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0.5rem;
+        display: inline-block;
+        transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary:hover {
+        background: #00f5ff;
+        color: white;
+    }
+
+    .contact-section {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-section h3 {
+        color: #00f5ff;
+        margin-bottom: 1rem;
+    }
+
+    .contact-section a {
+        color: #00f5ff;
+        text-decoration: none;
+    }
+
+    .contact-section a:hover {
+        text-decoration: underline;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        main {
+            padding: 1rem;
+            min-height: calc(100vh - 2rem);
+        }
+
+        .error-container {
+            padding: 2rem 1.5rem;
+            margin: 1rem;
+            max-width: calc(100vw - 2rem);
+        }
+
+        .logo svg {
+            width: 180px;
+            height: auto;
+        }
+
+        .error-code {
+            font-size: 4rem;
+            margin: 1.5rem 0;
+        }
+
+        .error-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .error-description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .links-section {
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .links-section h3 {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .links-section nav a {
+            font-size: 1rem;
+            display: block;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            width: 100%;
+            max-width: 280px;
+            margin: 0;
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .contact-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 1.1rem;
+        }
+
+        .contact-section p {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+    }
+
+    /* Tablet adjustments */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .error-container {
+            padding: 2.5rem;
+        }
+
+        .error-code {
+            font-size: 5rem;
+        }
+
+        .links-section nav a {
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 5px;
+            margin: 0.3rem 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+    <main>
+        <div class="error-container">
+
+            <!-- Logo -->
+            <div class="logo">
+                <svg width="220" height="60" viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 10 50 L 20 20 L 30 50 M 15 40 L 25 40" stroke="#00f5ff" stroke-width="3"
+                        stroke-linecap="round" fill="none" />
+                    <circle cx="35" cy="35" r="8" fill="#ff00aa" opacity="0.7" />
+                    <text x="50" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
+                        fill="#ffffff">
+                        Accessi-web
+                    </text>
+                </svg>
+            </div>
+
+            <!-- Erreur 404 -->
+            <h1 class="error-code">404</h1>
+
+            <h2 class="error-title">Page non trouvée</h2>
+
+            <p class="error-description">
+                Désolé, la page que vous cherchez n'existe pas ou a été déplacée.
+            </p>
+
+            <!-- Liens utiles -->
+            <div class="links-section">
+                <h3>Pages les plus visitées :</h3>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/">🏠 Accueil - Présentation de nos services</a>
+                        </li>
+                        <li>
+                            <a href="/business">💼 Offre Business - Audit complet RGAA</a>
+                        </li>
+                        <li>
+                            <a href="/essential">⚡ Offre Essential - Diagnostic rapide</a>
+                        </li>
+                        <li>
+                            <a href="/blog">📝 Blog - Actualités accessibilité</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-buttons">
+                <a href="/" class="btn-primary">
+                    Retour à l'accueil
+                </a>
+
+                <a href="/business" class="btn-secondary">
+                    Demander un audit
+                </a>
+            </div>
+
+            <!-- Contact d'urgence -->
+            <div class="contact-section">
+                <h3>Besoin d'aide ?</h3>
+                <p>
+                    Notre équipe est disponible pour vous accompagner dans votre projet d'accessibilité
+                </p>
+                <p>
+                    📧 <a href="mailto:contact@accessi-web.com">contact@accessi-web.com</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script pour tracking 404 -->
+    <script>
+        // Analytics pour tracker les 404
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: '404 Error',
+                page_location: window.location.href,
+                custom_map: { 'custom_parameter_1': '404_error' }
+            });
+        }
+
+        // Log pour debug
+        console.log('404 Error - URL:', window.location.href);
+    </script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page non trouvée (404) - Accessi-web</title>
+    <meta name="description"
+        content="La page que vous cherchez n'existe pas. Découvrez nos services d'accessibilité web et audit RGAA.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://accessi-web.com/">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Page non trouvée",
+    "description": "La page demandée n'a pas été trouvée",
+    "url": "https://accessi-web.com/404.html",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Accessi-web",
+        "url": "https://accessi-web.com"
+    }
+}
+</script>
+</head>
+
+<body>
+    <main style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+        <div
+            style="max-width: 600px; text-align: center; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 3rem;">
+
+            <!-- Logo -->
+            <div style="margin-bottom: 2rem;">
+                <svg width="220" height="60" viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 10 50 L 20 20 L 30 50 M 15 40 L 25 40" stroke="#00f5ff" stroke-width="3"
+                        stroke-linecap="round" fill="none" />
+                    <circle cx="35" cy="35" r="8" fill="#ff00aa" opacity="0.7" />
+                    <text x="50" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
+                        fill="#ffffff">
+                        Accessi-web
+                    </text>
+                </svg>
+            </div>
+
+            <!-- Erreur 404 -->
+            <h1
+                style="font-size: 6rem; color: #ff00aa; margin: 2rem 0; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                404
+            </h1>
+
+            <h2 style="color: #00f5ff; margin-bottom: 1rem; font-size: 2rem;">
+                Page non trouvée
+            </h2>
+
+            <p style="margin-bottom: 2rem; font-size: 1.2rem; color: #ccc;">
+                Désolé, la page que vous cherchez n'existe pas ou a été déplacée.
+            </p>
+
+            <!-- Liens utiles -->
+            <div style="background: rgba(255,255,255,0.05); border-radius: 15px; padding: 2rem; margin: 2rem 0;">
+                <h3 style="color: #00f5ff; margin-bottom: 1rem;">Pages les plus visitées :</h3>
+                <nav>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 0.5rem 0;">
+                            <a href="/" style="color: #fff; text-decoration: none; font-size: 1.1rem;">
+                                🏠 Accueil - Présentation de nos services
+                            </a>
+                        </li>
+                        <li style="margin: 0.5rem 0;">
+                            <a href="/business" style="color: #fff; text-decoration: none; font-size: 1.1rem;">
+                                💼 Offre Business - Audit complet RGAA
+                            </a>
+                        </li>
+                        <li style="margin: 0.5rem 0;">
+                            <a href="/essential" style="color: #fff; text-decoration: none; font-size: 1.1rem;">
+                                ⚡ Offre Essential - Diagnostic rapide
+                            </a>
+                        </li>
+                        <li style="margin: 0.5rem 0;">
+                            <a href="/blog" style="color: #fff; text-decoration: none; font-size: 1.1rem;">
+                                📝 Blog - Actualités accessibilité
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- CTA -->
+            <div style="margin-top: 2rem;">
+                <a href="/"
+                    style="background: linear-gradient(45deg, #00f5ff, #ff00aa); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 0.5rem; display: inline-block;">
+                    Retour à l'accueil
+                </a>
+
+                <a href="/business"
+                    style="background: transparent; border: 2px solid #00f5ff; color: #00f5ff; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 0.5rem; display: inline-block;">
+                    Demander un audit
+                </a>
+            </div>
+
+            <!-- Contact d'urgence -->
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                <h3 style="color: #00f5ff; margin-bottom: 1rem;">Besoin d'aide ?</h3>
+                <p style="color: #ccc; margin-bottom: 1rem;">
+                    Notre équipe est disponible pour vous accompagner dans votre projet d'accessibilité
+                </p>
+                <p style="color: #fff;">
+                    📧 <a href="mailto:contact@accessi-web.com" style="color: #00f5ff;">contact@accessi-web.com</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script pour tracking 404 -->
+    <script>
+        // Analytics pour tracker les 404
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: '404 Error',
+                page_location: window.location.href,
+                custom_map: { 'custom_parameter_1': '404_error' }
+            });
+        }
+
+        // Log pour debug
+        console.log('404 Error - URL:', window.location.href);
+    </script>
+</body>
+
+</html>

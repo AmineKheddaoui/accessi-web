@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offre Enterprise - Amine Consulting</title>
+    <meta name="description" content="Commandez l'offre Enterprise complète avec implémentation - À partir de 1000€">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .purchase-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .purchase-container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            color: #000;
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: #00f5ff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover,
+        .back-link:focus {
+            color: #fff;
+            outline: 2px solid #fff;
+            outline-offset: 4px;
+            border-radius: 4px;
+            padding: 0.5rem;
+        }
+
+        .offer-badge {
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            color: #000;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .price-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 2rem 0;
+        }
+
+        .price-prefix {
+            font-size: 1.2rem;
+            color: #ccc;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .features-list {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .features-list h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+        }
+
+        .enterprise-highlight {
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .form-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .required {
+            color: #ff4500;
+        }
+
+        .contact-btn {
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            border: none;
+            border-radius: 50px;
+            padding: 1.5rem 3rem;
+            color: #000;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            width: 100%;
+            min-height: 60px;
+        }
+
+        .contact-btn:hover,
+        .contact-btn:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            outline: 3px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .security-note {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-category {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .feature-category h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .purchase-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .price-display {
+                font-size: 2.5rem;
+            }
+
+            .back-link {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 2rem;
+            }
+
+            .premium-badge {
+                position: relative;
+                top: auto;
+                transform: none;
+                margin-bottom: 1rem;
+                display: block;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="back-link">
+        ← Retour à la présentation
+    </a>
+
+    <main class="purchase-page">
+        <div class="purchase-container">
+            <div class="premium-badge">SOLUTION PREMIUM</div>
+            <div class="offer-badge">OFFRE ENTERPRISE</div>
+
+            <h1>Solution Complète avec Implémentation</h1>
+
+            <div class="price-prefix">à partir de</div>
+            <div class="price-display" aria-label="à partir de 1000 euros">1000€</div>
+
+            <div class="enterprise-highlight">
+                <h3 style="color: #ffd700; margin-bottom: 1rem;">🏢 Pour les grandes entreprises</h3>
+                <p>Solution clé en main avec implémentation complète et accompagnement dédié</p>
+            </div>
+
+            <div class="features-list">
+                <h3>💎 Solution complète incluse</h3>
+                <div class="features-grid">
+                    <div class="feature-category">
+                        <h4>📋 Audit & Conseil</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Tout de l'offre Business</li>
+                            <li>Audit multi-sites</li>
+                            <li>Audit des applications mobiles</li>
+                            <li>Tests utilisateurs approfondis</li>
+                        </ul>
+                    </div>
+                    <div class="feature-category">
+                        <h4>⚡ Implémentation</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Corrections techniques complètes</li>
+                            <li>Développement sur mesure</li>
+                            <li>Intégration CI/CD</li>
+                            <li>Tests automatisés</li>
+                        </ul>
+                    </div>
+                    <div class="feature-category">
+                        <h4>🎓 Formation & Support</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Formation approfondie équipes</li>
+                            <li>Documentation personnalisée</li>
+                            <li>Support dédié 6 mois</li>
+                            <li>Accompagnement stratégique</li>
+                        </ul>
+                    </div>
+                    <div class="feature-category">
+                        <h4>🏆 Certification</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Certification RGAA officielle</li>
+                            <li>Rapport de conformité</li>
+                            <li>Suivi annuel</li>
+                            <li>Garantie de conformité</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <form class="form-section" id="enterpriseForm">
+                <h3 style="text-align: center; margin-bottom: 1.5rem; color: #ffd700;">
+                    Demande de devis personnalisé
+                </h3>
+
+                <div class="form-group">
+                    <label for="company">
+                        Nom de votre entreprise <span class="required">*</span>
+                    </label>
+                    <input type="text" id="company" name="company" required placeholder="Ex: Grande Entreprise SA">
+                </div>
+
+                <div class="form-group">
+                    <label for="websites">
+                        Sites web et applications à auditer <span class="required">*</span>
+                    </label>
+                    <textarea id="websites" name="websites" rows="3" required
+                        placeholder="Listez tous les sites et applications (URLs, noms d'apps mobiles...)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-name">
+                        Nom du responsable projet <span class="required">*</span>
+                    </label>
+                    <input type="text" id="contact-name" name="contact-name" required placeholder="Jean Dupont">
+                </div>
+
+                <div class="form-group">
+                    <label for="position">
+                        Fonction / Poste <span class="required">*</span>
+                    </label>
+                    <input type="text" id="position" name="position" required
+                        placeholder="Ex: Directeur Digital, DSI, Responsable UX...">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">
+                        Email <span class="required">*</span>
+                    </label>
+                    <input type="email" id="email" name="email" required placeholder="jean.dupont@entreprise.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">
+                        Téléphone <span class="required">*</span>
+                    </label>
+                    <input type="tel" id="phone" name="phone" required placeholder="01 23 45 67 89">
+                </div>
+
+                <div class="form-group">
+                    <label for="company-size">
+                        Taille de votre entreprise <span class="required">*</span>
+                    </label>
+                    <select id="company-size" name="company-size" required>
+                        <option value="">Sélectionnez</option>
+                        <option value="50-200">50 à 200 employés</option>
+                        <option value="200-500">200 à 500 employés</option>
+                        <option value="500-1000">500 à 1000 employés</option>
+                        <option value="1000+">Plus de 1000 employés</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="sector">
+                        Secteur d'activité <span class="required">*</span>
+                    </label>
+                    <select id="sector" name="sector" required>
+                        <option value="">Sélectionnez</option>
+                        <option value="ecommerce">E-commerce</option>
+                        <option value="finance">Banque / Finance</option>
+                        <option value="telecom">Télécommunications</option>
+                        <option value="transport">Transport</option>
+                        <option value="health">Santé</option>
+                        <option value="education">Éducation</option>
+                        <option value="public">Service public</option>
+                        <option value="media">Médias</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">
+                        Délai souhaité <span class="required">*</span>
+                    </label>
+                    <select id="timeline" name="timeline" required>
+                        <option value="">Sélectionnez</option>
+                        <option value="urgent">Urgent (1-2 mois)</option>
+                        <option value="normal">Standard (2-4 mois)</option>
+                        <option value="flexible">Flexible (4-6 mois)</option>
+                        <option value="long-term">Long terme (6+ mois)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget">
+                        Budget approximatif
+                    </label>
+                    <select id="budget" name="budget">
+                        <option value="">Sélectionnez</option>
+                        <option value="1000-5000">1 000€ - 5 000€</option>
+                        <option value="5000-15000">5 000€ - 15 000€</option>
+                        <option value="15000-30000">15 000€ - 30 000€</option>
+                        <option value="30000+">Plus de 30 000€</option>
+                        <option value="to-define">À définir ensemble</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="current-state">
+                        État actuel de l'accessibilité
+                    </label>
+                    <textarea id="current-state" name="current-state" rows="3"
+                        placeholder="Décrivez vos démarches actuelles, contraintes, objectifs spécifiques..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="requirements">
+                        Exigences et contraintes spécifiques
+                    </label>
+                    <textarea id="requirements" name="requirements" rows="4"
+                        placeholder="Ex: Certification requise, deadlines légales, contraintes techniques, intégration avec systèmes existants..."></textarea>
+                </div>
+
+                <button type="submit" class="contact-btn">
+                    💼 Demander un Devis Personnalisé
+                </button>
+
+                <p class="security-note">
+                    🔒 Données confidentielles • Devis sous 48h • Accompagnement dédié • Garantie de résultat
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('enterpriseForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Simulation d'une demande de devis
+            const formData = new FormData(this);
+            const requestData = {};
+
+            for (let [key, value] of formData.entries()) {
+                requestData[key] = value;
+            }
+
+            // Afficher un message de confirmation
+            const container = document.querySelector('.purchase-container');
+            container.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 4rem; margin-bottom: 2rem;">💼</div>
+                    <h1 style="color: #ffd700; margin-bottom: 2rem;">Demande Reçue !</h1>
+                    <p style="font-size: 1.3rem; margin-bottom: 2rem;">
+                        Votre demande de devis pour l'<strong>Offre Enterprise</strong> a été transmise.
+                    </p>
+                    <div style="background: rgba(255,215,0,0.2); border: 2px solid #ffd700; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                        <h3 style="color: #ffd700; margin-bottom: 1rem;">📋 Récapitulatif de votre demande :</h3>
+                        <p><strong>Entreprise :</strong> ${requestData.company || 'Non spécifié'}</p>
+                        <p><strong>Responsable :</strong> ${requestData['contact-name']} (${requestData.position})</p>
+                        <p><strong>Secteur :</strong> ${requestData.sector || 'Non spécifié'}</p>
+                        <p><strong>Taille :</strong> ${requestData['company-size'] || 'Non spécifié'}</p>
+                        <p><strong>Délai :</strong> ${requestData.timeline || 'Non spécifié'}</p>
+                        <p><strong>Budget :</strong> ${requestData.budget || 'À définir'}</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                        <h3 style="color: #ffd700; margin-bottom: 1rem;">🚀 Prochaines étapes :</h3>
+                        <ul style="text-align: left; list-style: none;">
+                            <li>📧 Confirmation immédiate par email</li>
+                            <li>📞 Appel de découverte sous 24h</li>
+                            <li>📊 Analyse préliminaire gratuite</li>
+                            <li>💰 Devis détaillé sous 48h</li>
+                            <li>🤝 Présentation de la solution personnalisée</li>
+                            <li>📝 Contractualisation et démarrage</li>
+                        </ul>
+                    </div>
+                    <div style="background: linear-gradient(45deg, rgba(255,215,0,0.1), rgba(255,140,0,0.1)); padding: 1.5rem; border-radius: 10px; margin: 2rem 0;">
+                        <p style="font-size: 1.1rem; color: #ffd700;">
+                            <strong>⚡ Engagement :</strong> Réponse personnalisée garantie sous 48h
+                        </p>
+                    </div>
+                    <a href="index.html" class="btn" style="margin-top: 2rem;">
+                        Retour à l'accueil
+                    </a>
+                    <p style="margin-top: 2rem; color: rgba(255,255,255,0.7);">
+                        Référence de demande : ENT-${Date.now().toString().slice(-6)}
+                    </p>
+                </div>
+            `;
+        });
+    </script>
+</body>
+
+</html>
