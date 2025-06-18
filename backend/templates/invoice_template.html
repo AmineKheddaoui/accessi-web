@@ -1,1 +1,396 @@
-<!DOCTYPE html><html><head><title>Invoice</title></head><body><h1>Invoice</h1><p>Invoice ID: {{ invoice.id }}</p><p>Customer: {{ invoice.customer_name }}</p><p>Amount: ${{ invoice.amount }}</p><p>Status: {{ invoice.status }}</p></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facture - Accessi-web</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .document {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #00f5ff;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00f5ff;
+        }
+
+        .logo .accent {
+            color: #ff00aa;
+        }
+
+        .document-info {
+            text-align: right;
+            color: #666;
+        }
+
+        .document-title {
+            font-size: 2.5rem;
+            color: #00f5ff;
+            margin: 30px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .billing-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .billing-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #00f5ff;
+        }
+
+        .billing-info h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .billing-info.client {
+            border-left-color: #ff00aa;
+        }
+
+        .status-paid {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            margin: 20px 0;
+            border: 2px solid #c3e6cb;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            margin: 20px 0;
+            border: 2px solid #ffeaa7;
+        }
+
+        .services-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .services-table th {
+            background: linear-gradient(135deg, #00f5ff, #ff00aa);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .services-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .services-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .total-section {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border: 2px solid #00f5ff;
+        }
+
+        .total-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00f5ff;
+            text-align: right;
+        }
+
+        .payment-info {
+            background: #fff5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #ff00aa;
+        }
+
+        .payment-info h4 {
+            color: #ff00aa;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .contact-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(0, 245, 255, 0.2), rgba(255, 0, 170, 0.2));
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .bank-details {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .document {
+                box-shadow: none;
+                border: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .billing-section {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+            }
+
+            .document-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="document">
+        <!-- En-tête -->
+        <div class="header">
+            <div class="logo">
+                Accessi<span class="accent">-web</span>
+            </div>
+            <div class="document-info">
+                <strong>Facture N° {{ invoice.id }}</strong><br>
+                Date : {{ "now"|strftime("%d/%m/%Y") }}<br>
+                Échéance : {{ "now"|strftime("%d/%m/%Y", 30*24*3600) }}
+            </div>
+        </div>
+
+        <!-- Titre et statut -->
+        <h1 class="document-title">FACTURE</h1>
+
+        <div style="text-align: center;">
+            {% if invoice.status == 'Paid' %}
+                <span class="status-paid">✅ PAYÉE</span>
+            {% else %}
+                <span class="status-pending">⏳ EN ATTENTE</span>
+            {% endif %}
+        </div>
+
+        <!-- Informations de facturation -->
+        <div class="billing-section">
+            <div class="billing-info">
+                <h3>🏢 Émetteur</h3>
+                <p><strong>Accessi-web</strong></p>
+                <p>Expert en accessibilité numérique</p>
+                <p>Val d'Oise, Île-de-France</p>
+                <p>France</p>
+                <hr style="margin: 10px 0;">
+                <p><small>SIRET : 123 456 789 00012</small></p>
+                <p><small>TVA : FR12345678901</small></p>
+            </div>
+
+            <div class="billing-info client">
+                <h3>👤 Client</h3>
+                <p><strong>{{ invoice.customer_name }}</strong></p>
+                <p>[Nom de l'entreprise]</p>
+                <p>[Adresse ligne 1]</p>
+                <p>[Code postal] [Ville]</p>
+                <p>[Pays]</p>
+                <hr style="margin: 10px 0;">
+                <p><small>Email : [email@entreprise.com]</small></p>
+            </div>
+        </div>
+
+        <!-- Tableau des prestations -->
+        <table class="services-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Quantité</th>
+                    <th>Prix unitaire</th>
+                    <th>Total HT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <strong>🔍 Audit d'Accessibilité RGAA 4.1 - Offre Business</strong><br>
+                        <small>Analyse complète de conformité, rapport détaillé, formation 2h, support 3 mois</small>
+                    </td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: right;">{{ "%.2f"|format(invoice.amount) }}€</td>
+                    <td style="text-align: right;"><strong>{{ "%.2f"|format(invoice.amount) }}€</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section totaux -->
+        <div class="total-section">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span>Sous-total HT :</span>
+                <span>{{ "%.2f"|format(invoice.amount) }}€</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span>TVA (20%) :</span>
+                <span>{{ "%.2f"|format(invoice.amount * 0.2) }}€</span>
+            </div>
+            <hr style="margin: 15px 0; border: 1px solid #00f5ff;">
+            <div class="total-amount">
+                TOTAL TTC : {{ "%.2f"|format(invoice.amount * 1.2) }}€
+            </div>
+        </div>
+
+        <!-- Prestations livrées -->
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 30px 0;">
+            <h4 style="color: #00f5ff; margin-bottom: 15px;">📋 Prestations livrées :</h4>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>✅ Audit exhaustif des 106 critères RGAA 4.1</li>
+                <li>✅ Rapport PDF détaillé avec captures d'écran</li>
+                <li>✅ Plan d'action prioritisé par impact/effort</li>
+                <li>✅ Formation personnalisée de 2h pour votre équipe</li>
+                <li>✅ Support email pendant 3 mois (en cours)</li>
+                <li>✅ Recommandations techniques précises</li>
+                <li>✅ Tests avec technologies d'assistance</li>
+            </ul>
+        </div>
+
+        <!-- Informations de paiement -->
+        <div class="payment-info">
+            <h4>💳 Modalités de règlement</h4>
+            {% if invoice.status == 'Paid' %}
+                <p style="color: #155724; font-weight: bold;">
+                    ✅ Cette facture a été réglée le {{ "now"|strftime("%d/%m/%Y") }}
+                </p>
+                <p><small>Merci pour votre confiance !</small></p>
+            {% else %}
+                <p><strong>Échéance :</strong> 30 jours à réception</p>
+                <p><strong>Modes de paiement acceptés :</strong></p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>Virement bancaire (RIB ci-dessous)</li>
+                    <li>Chèque à l'ordre d'Accessi-web</li>
+                    <li>Carte bancaire via lien sécurisé</li>
+                </ul>
+
+                <div class="bank-details">
+                    <strong>🏦 Coordonnées bancaires :</strong><br>
+                    IBAN : FR76 1234 5678 9012 3456 7890 123<br>
+                    BIC : ABCDEFGH<br>
+                    Banque : Crédit Agricole Val d'Oise<br>
+                    Titulaire : Accessi-web
+                </div>
+
+                <p style="color: #856404; font-weight: bold; margin-top: 15px;">
+                    ⚠️ En cas de retard de paiement, des pénalités de 3% par mois seront appliquées.
+                </p>
+            {% endif %}
+        </div>
+
+        <!-- Remerciements -->
+        <div style="background: linear-gradient(120deg, rgba(0,245,255,0.1), rgba(255,0,170,0.1)); padding: 20px; border-radius: 8px; margin: 30px 0; text-align: center;">
+            <h4 style="color: #00f5ff; margin-bottom: 15px;">🙏 Merci pour votre confiance !</h4>
+            <p>
+                Votre site est maintenant plus accessible et conforme RGAA. Nous restons disponibles 
+                pour tout accompagnement supplémentaire pendant les 3 mois de support inclus.
+            </p>
+            <p style="margin-top: 15px;">
+                <strong>N'hésitez pas à nous recommander</strong> et à partager votre expérience !
+            </p>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>📧 Email</strong><br>
+                contact@accessi-web.com
+            </div>
+            <div class="contact-item">
+                <strong>📞 Téléphone</strong><br>
+                01 23 45 67 89
+            </div>
+            <div class="contact-item">
+                <strong>🌐 Site web</strong><br>
+                www.accessi-web.com
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>
+                <strong>Accessi-web</strong> - Expert en accessibilité numérique RGAA<br>
+                SIRET : 123 456 789 00012 • TVA : FR12345678901<br>
+                Val d'Oise, Île-de-France, France
+            </p>
+            <p style="margin-top: 15px; font-style: italic;">
+                "L'accessibilité numérique pour tous - Votre partenaire de confiance"
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

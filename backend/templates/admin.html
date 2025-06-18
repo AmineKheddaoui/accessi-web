@@ -1,18 +1,425 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Admin Panel - Accessi-web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo svg {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #00f5ff;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #00f5ff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .dashboard-card h3 {
+            color: #00f5ff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .dashboard-card p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #00f5ff, #ff00aa);
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            min-height: 44px;
+            text-align: center;
+        }
+
+        .btn:hover,
+        .btn:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            outline: 3px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border: 2px solid #00f5ff;
+            color: #00f5ff;
+        }
+
+        .btn.secondary:hover {
+            background: #00f5ff;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00f5ff;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-top: 0.5rem;
+        }
+
+        .orders-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .orders-section h3 {
+            color: #ff00aa;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .order-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #00f5ff;
+        }
+
+        .order-meta {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-top: 0.5rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #ccc;
+            font-style: italic;
+            padding: 2rem;
+        }
+
+        .api-section {
+            background: rgba(0, 245, 255, 0.1);
+            border: 2px solid #00f5ff;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .api-section h3 {
+            color: #00f5ff;
+            margin-bottom: 1rem;
+        }
+
+        .api-endpoint {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+            border-left: 3px solid #ff00aa;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .logo svg {
+                max-width: 150px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Admin Panel</h1>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <svg width="200" height="55" viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 10 50 L 20 20 L 30 50 M 15 40 L 25 40" stroke="#00f5ff" stroke-width="3"
+                        stroke-linecap="round" fill="none" />
+                    <circle cx="35" cy="35" r="8" fill="#ff00aa" opacity="0.7" />
+                    <text x="50" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
+                        fill="#ffffff">
+                        Accessi-web
+                    </text>
+                </svg>
+            </div>
 
-    <h2>Quote Generation</h2>
-    <p><a href="{{ url_for('generate_quote_pdf') }}">Generate Sample Quote PDF</a></p>
+            <a href="/" class="back-link">← Retour API</a>
 
-    <h2>Invoice Generation</h2>
-    <p><a href="{{ url_for('generate_invoice_pdf') }}">Generate Sample Invoice PDF</a></p>
+            <h1>⚙️ Panel d'Administration</h1>
+            <p class="subtitle">Gestion des commandes et génération de documents</p>
+        </div>
 
+        <!-- Statistiques -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number" id="total-orders">0</span>
+                <div class="stat-label">Commandes totales</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="today-orders">0</span>
+                <div class="stat-label">Aujourd'hui</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">350€</span>
+                <div class="stat-label">Prix moyen</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">100%</span>
+                <div class="stat-label">Satisfaction</div>
+            </div>
+        </div>
+
+        <!-- Actions principales -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>📄 Génération de Devis</h3>
+                <p>Créer et télécharger des devis personnalisés au format PDF pour vos clients.</p>
+                <a href="{{ url_for('generate_quote_pdf') }}" class="btn">
+                    📊 Générer un devis exemple
+                </a>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>🧾 Génération de Factures</h3>
+                <p>Produire des factures professionnelles après validation des commandes clients.</p>
+                <a href="{{ url_for('generate_invoice_pdf') }}" class="btn">
+                    💼 Générer une facture exemple
+                </a>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>🛒 Test de Commande</h3>
+                <p>Interface de test pour simuler le processus de commande et valider l'intégration.</p>
+                <a href="/order" class="btn secondary">
+                    🧪 Tester une commande
+                </a>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>📊 API Données</h3>
+                <p>Accéder aux données des commandes au format JSON pour intégrations tierces.</p>
+                <a href="/api/orders" class="btn secondary">
+                    🔗 Voir l'API JSON
+                </a>
+            </div>
+        </div>
+
+        <!-- Section commandes -->
+        <div class="orders-section">
+            <h3>📋 Commandes Récentes</h3>
+            <div id="orders-list">
+                <div class="empty-state">
+                    🎯 Aucune commande pour le moment.<br>
+                    Utilisez le <a href="/order" style="color: #00f5ff;">formulaire de test</a> pour en créer une.
+                </div>
+            </div>
+        </div>
+
+        <!-- API Documentation -->
+        <div class="api-section">
+            <h3>🔗 Points d'API disponibles</h3>
+            <div class="api-endpoint">GET /api/orders - Liste toutes les commandes</div>
+            <div class="api-endpoint">POST /submit_order - Soumettre une nouvelle commande</div>
+            <div class="api-endpoint">GET /admin/generate_quote_pdf - Télécharger un devis PDF</div>
+            <div class="api-endpoint">GET /admin/generate_invoice_pdf - Télécharger une facture PDF</div>
+        </div>
+
+        <!-- Footer info -->
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+            <p style="color: #ccc; font-size: 0.9rem;">
+                🔒 Panel administrateur • Version développement • 
+                <span id="current-time"></span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Mise à jour de l'heure
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleString('fr-FR');
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Charger les statistiques des commandes
+        async function loadOrderStats() {
+            try {
+                const response = await fetch('/api/orders');
+                const data = await response.json();
+                
+                document.getElementById('total-orders').textContent = data.total || 0;
+                
+                // Simuler les commandes du jour (pour la démo)
+                const today = new Date().toDateString();
+                const todayOrders = data.orders ? data.orders.filter(order => 
+                    new Date().toDateString() === today
+                ).length : 0;
+                document.getElementById('today-orders').textContent = todayOrders;
+                
+                // Afficher les commandes récentes
+                displayRecentOrders(data.orders || []);
+            } catch (error) {
+                console.log('Erreur lors du chargement des stats:', error);
+            }
+        }
+
+        function displayRecentOrders(orders) {
+            const container = document.getElementById('orders-list');
+            
+            if (orders.length === 0) {
+                return; // Garder le message vide par défaut
+            }
+            
+            container.innerHTML = orders.slice(-5).reverse().map(order => `
+                <div class="order-item">
+                    <strong>${order.name}</strong> - ${order.product}
+                    <div class="order-meta">
+                        📧 ${order.email} • 
+                        📦 Quantité: ${order.quantity} • 
+                        💳 ${order.payment_status}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Charger au chargement de la page
+        loadOrderStats();
+
+        // Actualiser toutes les 30 secondes
+        setInterval(loadOrderStats, 30000);
+
+        // Animation des cartes
+        document.querySelectorAll('.dashboard-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderColor = '#00f5ff';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+            });
+        });
+    </script>
 </body>
+
 </html>
