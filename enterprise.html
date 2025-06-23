@@ -301,128 +301,14 @@
                 </div>
             </div>
 
-            <form class="form-section" id="enterpriseForm">
+            <form class="form-section" action="http://localhost:5000/order/enterprise" method="GET">
                 <h3 style="text-align: center; margin-bottom: 1.5rem; color: #ffd700;">
-                    Demande de devis personnalisé
+                    Demander un devis personnalisé
                 </h3>
 
-                <div class="form-group">
-                    <label for="company">
-                        Nom de votre entreprise <span class="required">*</span>
-                    </label>
-                    <input type="text" id="company" name="company" required placeholder="Ex: Grande Entreprise SA">
-                </div>
-
-                <div class="form-group">
-                    <label for="websites">
-                        Sites web et applications à auditer <span class="required">*</span>
-                    </label>
-                    <textarea id="websites" name="websites" rows="3" required
-                        placeholder="Listez tous les sites et applications (URLs, noms d'apps mobiles...)"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="contact-name">
-                        Nom du responsable projet <span class="required">*</span>
-                    </label>
-                    <input type="text" id="contact-name" name="contact-name" required placeholder="Jean Dupont">
-                </div>
-
-                <div class="form-group">
-                    <label for="position">
-                        Fonction / Poste <span class="required">*</span>
-                    </label>
-                    <input type="text" id="position" name="position" required
-                        placeholder="Ex: Directeur Digital, DSI, Responsable UX...">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">
-                        Email <span class="required">*</span>
-                    </label>
-                    <input type="email" id="email" name="email" required placeholder="jean.dupont@entreprise.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">
-                        Téléphone <span class="required">*</span>
-                    </label>
-                    <input type="tel" id="phone" name="phone" required placeholder="01 23 45 67 89">
-                </div>
-
-                <div class="form-group">
-                    <label for="company-size">
-                        Taille de votre entreprise <span class="required">*</span>
-                    </label>
-                    <select id="company-size" name="company-size" required>
-                        <option value="">Sélectionnez</option>
-                        <option value="50-200">50 à 200 employés</option>
-                        <option value="200-500">200 à 500 employés</option>
-                        <option value="500-1000">500 à 1000 employés</option>
-                        <option value="1000+">Plus de 1000 employés</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="sector">
-                        Secteur d'activité <span class="required">*</span>
-                    </label>
-                    <select id="sector" name="sector" required>
-                        <option value="">Sélectionnez</option>
-                        <option value="ecommerce">E-commerce</option>
-                        <option value="finance">Banque / Finance</option>
-                        <option value="telecom">Télécommunications</option>
-                        <option value="transport">Transport</option>
-                        <option value="health">Santé</option>
-                        <option value="education">Éducation</option>
-                        <option value="public">Service public</option>
-                        <option value="media">Médias</option>
-                        <option value="other">Autre</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="timeline">
-                        Délai souhaité <span class="required">*</span>
-                    </label>
-                    <select id="timeline" name="timeline" required>
-                        <option value="">Sélectionnez</option>
-                        <option value="urgent">Urgent (1-2 mois)</option>
-                        <option value="normal">Standard (2-4 mois)</option>
-                        <option value="flexible">Flexible (4-6 mois)</option>
-                        <option value="long-term">Long terme (6+ mois)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="budget">
-                        Budget approximatif
-                    </label>
-                    <select id="budget" name="budget">
-                        <option value="">Sélectionnez</option>
-                        <option value="1000-5000">1 000€ - 5 000€</option>
-                        <option value="5000-15000">5 000€ - 15 000€</option>
-                        <option value="15000-30000">15 000€ - 30 000€</option>
-                        <option value="30000+">Plus de 30 000€</option>
-                        <option value="to-define">À définir ensemble</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="current-state">
-                        État actuel de l'accessibilité
-                    </label>
-                    <textarea id="current-state" name="current-state" rows="3"
-                        placeholder="Décrivez vos démarches actuelles, contraintes, objectifs spécifiques..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="requirements">
-                        Exigences et contraintes spécifiques
-                    </label>
-                    <textarea id="requirements" name="requirements" rows="4"
-                        placeholder="Ex: Certification requise, deadlines légales, contraintes techniques, intégration avec systèmes existants..."></textarea>
-                </div>
+                <p style="text-align: center; margin-bottom: 2rem; color: #ccc;">
+                    Vous serez redirigé vers notre plateforme de devis sécurisée
+                </p>
 
                 <button type="submit" class="contact-btn">
                     💼 Demander un Devis Personnalisé
@@ -434,63 +320,6 @@
             </form>
         </div>
     </main>
-
-    <script>
-        document.getElementById('enterpriseForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Simulation d'une demande de devis
-            const formData = new FormData(this);
-            const requestData = {};
-
-            for (let [key, value] of formData.entries()) {
-                requestData[key] = value;
-            }
-
-            // Afficher un message de confirmation
-            const container = document.querySelector('.purchase-container');
-            container.innerHTML = `
-                <div style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 4rem; margin-bottom: 2rem;">💼</div>
-                    <h1 style="color: #ffd700; margin-bottom: 2rem;">Demande Reçue !</h1>
-                    <p style="font-size: 1.3rem; margin-bottom: 2rem;">
-                        Votre demande de devis pour l'<strong>Offre Enterprise</strong> a été transmise.
-                    </p>
-                    <div style="background: rgba(255,215,0,0.2); border: 2px solid #ffd700; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
-                        <h3 style="color: #ffd700; margin-bottom: 1rem;">📋 Récapitulatif de votre demande :</h3>
-                        <p><strong>Entreprise :</strong> ${requestData.company || 'Non spécifié'}</p>
-                        <p><strong>Responsable :</strong> ${requestData['contact-name']} (${requestData.position})</p>
-                        <p><strong>Secteur :</strong> ${requestData.sector || 'Non spécifié'}</p>
-                        <p><strong>Taille :</strong> ${requestData['company-size'] || 'Non spécifié'}</p>
-                        <p><strong>Délai :</strong> ${requestData.timeline || 'Non spécifié'}</p>
-                        <p><strong>Budget :</strong> ${requestData.budget || 'À définir'}</p>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
-                        <h3 style="color: #ffd700; margin-bottom: 1rem;">🚀 Prochaines étapes :</h3>
-                        <ul style="text-align: left; list-style: none;">
-                            <li>📧 Confirmation immédiate par email</li>
-                            <li>📞 Appel de découverte sous 24h</li>
-                            <li>📊 Analyse préliminaire gratuite</li>
-                            <li>💰 Devis détaillé sous 48h</li>
-                            <li>🤝 Présentation de la solution personnalisée</li>
-                            <li>📝 Contractualisation et démarrage</li>
-                        </ul>
-                    </div>
-                    <div style="background: linear-gradient(45deg, rgba(255,215,0,0.1), rgba(255,140,0,0.1)); padding: 1.5rem; border-radius: 10px; margin: 2rem 0;">
-                        <p style="font-size: 1.1rem; color: #ffd700;">
-                            <strong>⚡ Engagement :</strong> Réponse personnalisée garantie sous 48h
-                        </p>
-                    </div>
-                    <a href="index.html" class="btn" style="margin-top: 2rem;">
-                        Retour à l'accueil
-                    </a>
-                    <p style="margin-top: 2rem; color: rgba(255,255,255,0.7);">
-                        Référence de demande : ENT-${Date.now().toString().slice(-6)}
-                    </p>
-                </div>
-            `;
-        });
-    </script>
 </body>
 
 </html>

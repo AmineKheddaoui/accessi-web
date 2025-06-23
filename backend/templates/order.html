@@ -1,36 +1,418 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Order</title>
+    <title>Commander - Accessi-web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00f5ff;
+            margin-bottom: 1rem;
+        }
+
+        .logo .accent {
+            color: #ff00aa;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #00f5ff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .offer-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: #00f5ff;
+        }
+
+        .offer-card.selected {
+            border-color: #ff00aa;
+            background: rgba(255, 0, 170, 0.1);
+        }
+
+        .offer-card h3 {
+            color: #00f5ff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .offer-card .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff00aa;
+            margin-bottom: 1rem;
+        }
+
+        .offer-card .description {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .offer-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .offer-features li {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .offer-features li:before {
+            content: "✓";
+            color: #00f5ff;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .order-form {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .order-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00f5ff;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00f5ff;
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #00f5ff, #ff00aa);
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            min-height: 44px;
+            text-align: center;
+        }
+
+        .btn:hover,
+        .btn:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            outline: 3px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border: 2px solid #00f5ff;
+            color: #00f5ff;
+        }
+
+        .btn.secondary:hover {
+            background: #00f5ff;
+            color: white;
+        }
+
+        .selected-offer-info {
+            background: rgba(0, 245, 255, 0.1);
+            border: 2px solid #00f5ff;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .selected-offer-info h4 {
+            color: #00f5ff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 2rem;
+            }
+
+            .offers-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Place Your Order</h1>
-    <form action="/submit_order" method="POST">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+    <div class="container">
+        <div class="header">
+            <a href="/" class="back-link">← Retour à l'accueil</a>
+            <div class="logo">
+                Accessi<span class="accent">-web</span>
+            </div>
+            <h1>Commander votre solution</h1>
+            <p class="subtitle">Choisissez l'offre qui correspond à vos besoins</p>
         </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+
+        <div class="offers-grid">
+            <div class="offer-card" data-offer="essential">
+                <h3>🚀 Essential</h3>
+                <div class="price">299€</div>
+                <p class="description">Solution de base pour démarrer votre présence en ligne</p>
+                <ul class="offer-features">
+                    <li>Site web responsive (5 pages)</li>
+                    <li>Design moderne et professionnel</li>
+                    <li>Formulaire de contact</li>
+                    <li>Optimisation SEO de base</li>
+                    <li>Livraison en 5 jours</li>
+                </ul>
+            </div>
+
+            <div class="offer-card" data-offer="business">
+                <h3>💼 Business</h3>
+                <div class="price">599€</div>
+                <p class="description">Solution complète pour développer votre activité</p>
+                <ul class="offer-features">
+                    <li>Site web responsive (10 pages)</li>
+                    <li>Design sur mesure</li>
+                    <li>Formulaire de contact avancé</li>
+                    <li>Optimisation SEO complète</li>
+                    <li>Intégration réseaux sociaux</li>
+                    <li>Blog intégré</li>
+                    <li>Livraison en 10 jours</li>
+                </ul>
+            </div>
+
+            <div class="offer-card" data-offer="enterprise">
+                <h3>🏢 Enterprise</h3>
+                <div class="price">1299€</div>
+                <p class="description">Solution premium pour les grandes entreprises</p>
+                <ul class="offer-features">
+                    <li>Site web responsive (illimité)</li>
+                    <li>Design exclusif sur mesure</li>
+                    <li>Système de gestion de contenu</li>
+                    <li>Optimisation SEO avancée</li>
+                    <li>Intégration e-commerce</li>
+                    <li>Analytics et reporting</li>
+                    <li>Support prioritaire</li>
+                    <li>Livraison en 15 jours</li>
+                </ul>
+            </div>
         </div>
-        <div>
-            <label for="shipping_address">Shipping Address:</label>
-            <textarea id="shipping_address" name="shipping_address" required></textarea>
-        </div>
-        <div>
-            <label for="product">Product:</label>
-            <input type="text" id="product" name="product" required>
-        </div>
-        <div>
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1" required>
-        </div>
-        <div>
-            <button type="submit">Submit Order</button>
-        </div>
-    </form>
+
+        <form id="orderForm" class="order-form" action="/submit_order" method="POST">
+            <div class="selected-offer-info">
+                <h4>Offre sélectionnée : <span id="selectedOfferName">Aucune</span></h4>
+                <p>Prix : <span id="selectedOfferPrice">-</span></p>
+            </div>
+
+            <input type="hidden" id="product" name="product" value="">
+            <input type="hidden" id="quantity" name="quantity" value="1">
+
+            <div class="form-group">
+                <label for="name">Nom complet *</label>
+                <input type="text" id="name" name="name" required placeholder="Votre nom complet">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="votre@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Téléphone</label>
+                <input type="tel" id="phone" name="phone" placeholder="01 23 45 67 89">
+            </div>
+
+            <div class="form-group">
+                <label for="company">Entreprise</label>
+                <input type="text" id="company" name="company" placeholder="Nom de votre entreprise">
+            </div>
+
+            <div class="form-group">
+                <label for="shipping_address">Adresse de facturation *</label>
+                <textarea id="shipping_address" name="shipping_address" required placeholder="Votre adresse complète" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="project_description">Description du projet</label>
+                <textarea id="project_description" name="project_description" placeholder="Décrivez votre projet, vos besoins spécifiques..." rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="deadline">Date de livraison souhaitée</label>
+                <input type="date" id="deadline" name="deadline">
+            </div>
+
+            <button type="submit" class="btn">Commander maintenant</button>
+        </form>
+    </div>
+
+    <script>
+        const offers = {
+            essential: {
+                name: 'Essential',
+                price: '299€',
+                description: 'Solution de base pour démarrer votre présence en ligne'
+            },
+            business: {
+                name: 'Business',
+                price: '599€',
+                description: 'Solution complète pour développer votre activité'
+            },
+            enterprise: {
+                name: 'Enterprise',
+                price: '1299€',
+                description: 'Solution premium pour les grandes entreprises'
+            }
+        };
+
+        // Gestion de la sélection d'offre
+        document.querySelectorAll('.offer-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Retirer la sélection précédente
+                document.querySelectorAll('.offer-card').forEach(c => c.classList.remove('selected'));
+                
+                // Ajouter la sélection à la carte cliquée
+                this.classList.add('selected');
+                
+                // Afficher le formulaire
+                const orderForm = document.getElementById('orderForm');
+                orderForm.classList.add('active');
+                
+                // Mettre à jour les informations de l'offre sélectionnée
+                const offerType = this.dataset.offer;
+                const offer = offers[offerType];
+                
+                document.getElementById('selectedOfferName').textContent = offer.name;
+                document.getElementById('selectedOfferPrice').textContent = offer.price;
+                document.getElementById('product').value = offer.name;
+                
+                // Scroll vers le formulaire
+                orderForm.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Gestion de la soumission du formulaire
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            const selectedOffer = document.querySelector('.offer-card.selected');
+            if (!selectedOffer) {
+                e.preventDefault();
+                alert('Veuillez sélectionner une offre avant de commander.');
+                return;
+            }
+        });
+    </script>
 </body>
+
 </html>

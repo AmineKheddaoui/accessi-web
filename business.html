@@ -243,113 +243,14 @@
                 </ul>
             </div>
 
-            <form class="form-section" id="purchaseForm">
+            <form class="form-section" action="http://localhost:5000/order/business" method="GET">
                 <h3 style="text-align: center; margin-bottom: 1.5rem; color: #00f5ff;">
-                    Vos informations
+                    Commander maintenant
                 </h3>
 
-                <div class="form-group">
-                    <label for="company">
-                        Nom de votre entreprise <span class="required">*</span>
-                    </label>
-                    <input type="text" id="company" name="company" required placeholder="Ex: Mon Entreprise SARL">
-                </div>
-
-                <div class="form-group">
-                    <label for="website">
-                        URL de votre site web <span class="required">*</span>
-                    </label>
-                    <input type="url" id="website" name="website" required placeholder="https://votre-site.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="contact-name">
-                        Votre nom <span class="required">*</span>
-                    </label>
-                    <input type="text" id="contact-name" name="contact-name" required placeholder="Jean Dupont">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">
-                        Email <span class="required">*</span>
-                    </label>
-                    <input type="email" id="email" name="email" required placeholder="jean.dupont@entreprise.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">
-                        Téléphone <span class="required">*</span>
-                    </label>
-                    <input type="tel" id="phone" name="phone" required placeholder="01 23 45 67 89">
-                </div>
-
-                <div class="form-group">
-                    <label for="company-size">
-                        Taille de votre entreprise
-                    </label>
-                    <select id="company-size" name="company-size">
-                        <option value="">Sélectionnez</option>
-                        <option value="1-10">1 à 10 employés</option>
-                        <option value="11-50">11 à 50 employés</option>
-                        <option value="51-200">51 à 200 employés</option>
-                        <option value="200+">Plus de 200 employés</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="pages-count">
-                        Nombre approximatif de pages sur votre site <span class="required">*</span>
-                    </label>
-                    <select id="pages-count" name="pages-count" required>
-                        <option value="">Sélectionnez</option>
-                        <option value="1-10">1 à 10 pages</option>
-                        <option value="11-25">11 à 25 pages</option>
-                        <option value="26-50">26 à 50 pages</option>
-                        <option value="51-100">51 à 100 pages</option>
-                        <option value="100+">Plus de 100 pages</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="current-issues">
-                        Problèmes d'accessibilité déjà identifiés (optionnel)
-                    </label>
-                    <textarea id="current-issues" name="current-issues" rows="3"
-                        placeholder="Ex: Contrastes insuffisants, navigation clavier difficile..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="team-size">
-                        Nombre de personnes à former
-                    </label>
-                    <select id="team-size" name="team-size">
-                        <option value="">Sélectionnez</option>
-                        <option value="1-2">1 à 2 personnes</option>
-                        <option value="3-5">3 à 5 personnes</option>
-                        <option value="6-10">6 à 10 personnes</option>
-                        <option value="10+">Plus de 10 personnes</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="urgency">
-                        Niveau d'urgence
-                    </label>
-                    <select id="urgency" name="urgency">
-                        <option value="">Sélectionnez</option>
-                        <option value="normal">Standard (7-10 jours)</option>
-                        <option value="urgent">Urgent (3-5 jours) +100€</option>
-                        <option value="express">Express (24-48h) +250€</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="comments">
-                        Objectifs et contraintes spécifiques (optionnel)
-                    </label>
-                    <textarea id="comments" name="comments" rows="4"
-                        placeholder="Ex: Deadline précise, secteur d'activité, contraintes techniques..."></textarea>
-                </div>
+                <p style="text-align: center; margin-bottom: 2rem; color: #ccc;">
+                    Vous serez redirigé vers notre plateforme de commande sécurisée
+                </p>
 
                 <button type="submit" class="purchase-btn">
                     🚀 Commander l'Offre Business - 350€
@@ -361,72 +262,6 @@
             </form>
         </div>
     </main>
-
-    <script>
-        document.getElementById('purchaseForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Simulation d'une commande
-            const formData = new FormData(this);
-            const orderData = {};
-
-            for (let [key, value] of formData.entries()) {
-                orderData[key] = value;
-            }
-
-            // Calculer le prix en fonction des options
-            let totalPrice = 350;
-            if (orderData.urgency === 'urgent') totalPrice += 100;
-            if (orderData.urgency === 'express') totalPrice += 250;
-
-            // Afficher un message de confirmation
-            const container = document.querySelector('.purchase-container');
-            container.innerHTML = `
-                <div style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 4rem; margin-bottom: 2rem;">🎉</div>
-                    <h1 style="color: #00f5ff; margin-bottom: 2rem;">Commande Confirmée !</h1>
-                    <p style="font-size: 1.3rem; margin-bottom: 2rem;">
-                        Merci pour votre commande de l'<strong>Offre Business</strong>.
-                    </p>
-                    <div style="background: rgba(0,245,255,0.2); border: 2px solid #00f5ff; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
-                        <h3 style="color: #00f5ff; margin-bottom: 1rem;">Récapitulatif :</h3>
-                        <p style="font-size: 1.2rem;"><strong>Total : ${totalPrice}€</strong></p>
-                        <p>Site à auditer : ${orderData.website || 'Non spécifié'}</p>
-                        <p>Pages estimées : ${orderData['pages-count'] || 'Non spécifié'}</p>
-                        <p>Délai : ${orderData.urgency === 'urgent' ? 'Urgent (3-5 jours)' : orderData.urgency === 'express' ? 'Express (24-48h)' : 'Standard (7-10 jours)'}</p>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
-                        <h3 style="color: #00f5ff; margin-bottom: 1rem;">Prochaines étapes :</h3>
-                        <ul style="text-align: left; list-style: none;">
-                            <li>📧 Email de confirmation et facture sous 2h</li>
-                            <li>📞 Appel de cadrage sous 24h</li>
-                            <li>🔍 Début de l'audit immédiatement après validation</li>
-                            <li>📋 Livraison du rapport complet</li>
-                            <li>🎓 Planification des sessions de formation</li>
-                            <li>🤝 3 mois de suivi personnalisé</li>
-                        </ul>
-                    </div>
-                    <a href="index.html" class="btn" style="margin-top: 2rem;">
-                        Retour à l'accueil
-                    </a>
-                    <p style="margin-top: 2rem; color: rgba(255,255,255,0.7);">
-                        Numéro de commande : BUS-${Date.now().toString().slice(-6)}
-                    </p>
-                </div>
-            `;
-        });
-
-        // Mise à jour du prix en temps réel
-        document.getElementById('urgency').addEventListener('change', function () {
-            const btn = document.querySelector('.purchase-btn');
-            let price = 350;
-
-            if (this.value === 'urgent') price += 100;
-            if (this.value === 'express') price += 250;
-
-            btn.textContent = `🚀 Commander l'Offre Business - ${price}€`;
-        });
-    </script>
 </body>
 
 </html>
