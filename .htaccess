@@ -14,9 +14,10 @@ Options +FollowSymLinks -MultiViews
 RewriteCond %{REQUEST_METHOD} OPTIONS
 RewriteRule ^(.*)$ $1 [R=200,L]
 
-# Rediriger les URLs avec .html vers les URLs propres
+# Rediriger les URLs avec .html vers les URLs propres (sauf fichiers de diagnostic)
 RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
-RewriteRule ^ /%1? [R=301,L]
+RewriteCond %{REQUEST_URI} !^/(debug-ovh|test-assets)\.html$ [NC]
+RewriteRule ^(.+)\.html$ /$1? [R=301,L]
 
 # Servir les fichiers PHP et assets normalement
 RewriteCond %{REQUEST_FILENAME} -f
@@ -25,6 +26,9 @@ RewriteRule ^ - [L]
 # Servir les dossiers normalement  
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
+
+# Permettre l'accès aux pages de diagnostic
+RewriteRule ^(debug-ovh|test-assets)\.html$ $0 [L]
 
 # Réécrire les URLs propres vers les fichiers .html (seulement pour les pages)
 RewriteCond %{REQUEST_URI} ^/(essential|business|enterprise|contact)/?$
