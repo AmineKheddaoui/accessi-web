@@ -1,6 +1,7 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Désactiver l'affichage des erreurs pour ne pas casser le JSON
+error_reporting(0);
+ini_set('display_errors', 0);
 
 require_once 'includes/database.php';
 require_once 'includes/emailer.php';

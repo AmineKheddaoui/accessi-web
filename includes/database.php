@@ -26,7 +26,7 @@ class Database {
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conn->exec("set names utf8");
         } catch(PDOException $exception) {
-            echo "Erreur de connexion: " . $exception->getMessage();
+            throw $exception;
         }
         
         return $this->conn;
@@ -56,8 +56,7 @@ class Database {
             $this->conn->exec($query);
             return true;
         } catch(PDOException $exception) {
-            echo "Erreur création table: " . $exception->getMessage();
-            return false;
+            throw $exception;
         }
     }
 }

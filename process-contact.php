@@ -1,6 +1,7 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Désactiver l'affichage des erreurs pour ne pas casser le JSON
+error_reporting(0);
+ini_set('display_errors', 0);
 
 require_once 'includes/database.php';
 require_once 'includes/emailer.php';
@@ -135,7 +136,7 @@ class ContactEmailer {
     private $admin_email;
 
     public function __construct() {
-        $config = include(__DIR__ . '/config.php');
+        $config = include(__DIR__ . '/../config.php');
         $this->smtp_host = $config['smtp_host'];
         $this->smtp_port = $config['smtp_port'];
         $this->smtp_user = $config['smtp_user'];
