@@ -271,61 +271,30 @@
             <div class="logo">
                 Accessi<span class="accent">-web</span>
             </div>
-            <div class="offer-badge">🏢 Offre Enterprise</div>
-            <h1>Solution complète avec implémentation</h1>
-            <div class="price-prefix">À partir de</div>
-            <div class="price-display">1000€</div>
-            <p>Solution premium pour les grandes entreprises</p>
+            <div class="offer-badge">🏆 Offre Enterprise</div>
+            <h1>Solution RGAA complète et accompagnement premium</h1>
+            <div class="price-display">Sur devis</div>
+            <p>Pour les grandes entreprises, institutions ou besoins sur-mesure</p>
         </div>
 
         <div class="enterprise-highlight">
-            <h3>🎯 Pourquoi choisir Enterprise ?</h3>
-            <p>L'offre la plus complète avec audit, implémentation et accompagnement sur mesure</p>
+            <h3>🌟 Pourquoi choisir Enterprise ?</h3>
+            <p>Accompagnement premium, audit sur-mesure, suivi personnalisé et support prioritaire</p>
         </div>
 
-        <div class="features-grid">
-            <div class="feature-category">
-                <h4>🔍 Audit Complet</h4>
-                <ul>
-                    <li>Audit RGAA exhaustif</li>
-                    <li>Tests utilisateurs</li>
-                    <li>Rapport détaillé</li>
-                    <li>Plan d'action prioritaire</li>
-                </ul>
-            </div>
-            
-            <div class="feature-category">
-                <h4>⚙️ Implémentation</h4>
-                <ul>
-                    <li>Corrections techniques</li>
-                    <li>Développement sur mesure</li>
-                    <li>Tests de conformité</li>
-                    <li>Validation finale</li>
-                </ul>
-            </div>
-            
-            <div class="feature-category">
-                <h4>🎓 Formation</h4>
-                <ul>
-                    <li>Formation équipe (4h)</li>
-                    <li>Documentation technique</li>
-                    <li>Bonnes pratiques</li>
-                    <li>Support continu</li>
-                </ul>
-            </div>
-            
-            <div class="feature-category">
-                <h4>📞 Accompagnement</h4>
-                <ul>
-                    <li>Chef de projet dédié</li>
-                    <li>Suivi hebdomadaire</li>
-                    <li>Support prioritaire</li>
-                    <li>Garantie 6 mois</li>
-                </ul>
-            </div>
+        <div class="features-list">
+            <h3>✨ Ce qui est inclus</h3>
+            <ul>
+                <li>Audit RGAA complet et approfondi</li>
+                <li>Accompagnement sur-mesure</li>
+                <li>Support prioritaire (téléphone & email)</li>
+                <li>Rapports personnalisés</li>
+                <li>Formations et ateliers inclus</li>
+                <li>Livraison et suivi adaptés à vos besoins</li>
+            </ul>
         </div>
 
-        <form class="order-form" action="/submit_order" method="POST">
+        <form class="order-form" action="/submit_order" method="POST" id="orderForm">
             <input type="hidden" name="product" value="Enterprise - Solution Complète">
             <input type="hidden" name="quantity" value="1">
 
@@ -345,12 +314,12 @@
             </div>
 
             <div class="form-group">
-                <label for="company">Entreprise <span class="required">*</span></label>
-                <input type="text" id="company" name="company" required placeholder="Nom de votre entreprise">
+                <label for="company">Entreprise</label>
+                <input type="text" id="company" name="company" placeholder="Nom de votre entreprise">
             </div>
 
             <div class="form-group">
-                <label for="website_url">URL du site <span class="required">*</span></label>
+                <label for="website_url">URL du site à auditer <span class="required">*</span></label>
                 <input type="url" id="website_url" name="website_url" required placeholder="https://www.votresite.com">
             </div>
 
@@ -360,23 +329,59 @@
             </div>
 
             <div class="form-group">
-                <label for="project_description">Description du projet <span class="required">*</span></label>
-                <textarea id="project_description" name="project_description" required placeholder="Décrivez votre projet, vos besoins spécifiques, le nombre de pages..." rows="4"></textarea>
+                <label for="project_description">Informations complémentaires</label>
+                <textarea id="project_description" name="project_description" placeholder="Précisions sur votre projet, besoins spécifiques..." rows="4"></textarea>
             </div>
 
-            <div class="form-group">
-                <label for="deadline">Date de livraison souhaitée</label>
-                <input type="date" id="deadline" name="deadline">
-            </div>
-
-            <button type="submit" class="btn">🚀 Demander un devis Enterprise</button>
+            <button type="submit" class="btn" id="submitBtn">🏆 Demander un devis Enterprise</button>
             
             <p class="security-note">
                 🔒 Paiement sécurisé - Vos données sont protégées<br>
                 💡 Un devis personnalisé vous sera envoyé sous 24h
             </p>
         </form>
+
+        <div id="successMessage" style="display: none; background: rgba(0,255,0,0.2); border: 2px solid #00ff00; border-radius: 15px; padding: 2rem; margin: 2rem 0; text-align: center;">
+            <h3 style="color: #00ff00;">✅ Demande envoyée avec succès !</h3>
+            <p>Nous avons bien reçu votre demande et vous avons envoyé un email de confirmation.</p>
+            <p>Notre équipe vous contactera dans les 24h pour finaliser votre projet.</p>
+            <a href="/" class="btn" style="margin-top: 1rem;">← Retour à l'accueil</a>
+        </div>
+
+        <div id="errorMessage" style="display: none; background: rgba(255,0,0,0.2); border: 2px solid #ff0000; border-radius: 15px; padding: 2rem; margin: 2rem 0; text-align: center;">
+            <h3 style="color: #ff0000;">❌ Erreur lors de l'envoi</h3>
+            <p>Une erreur s'est produite lors de l'envoi de votre demande.</p>
+            <p>Veuillez réessayer ou nous contacter directement.</p>
+            <button onclick="location.reload()" class="btn" style="margin-top: 1rem;">🔄 Réessayer</button>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '⏳ Envoi en cours...';
+            submitBtn.disabled = true;
+            const formData = new FormData(this);
+            fetch('/submit_order', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('orderForm').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                console.log('Demande envoyée:', data);
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
 </body>
 
 </html> 

@@ -76,7 +76,7 @@
             "Mise en conformité RGAA",
             "Conseil en accessibilité web"
         ],
-        "priceRange": "150€-1000€",
+        "priceRange": "199-1000€",
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Services d'accessibilité numérique",
@@ -88,7 +88,7 @@
                         "name": "Offre Essential",
                         "description": "Diagnostic rapide d'accessibilité RGAA"
                     },
-                    "price": "150",
+                    "price": "199",
                     "priceCurrency": "EUR"
                 },
                 {
@@ -98,7 +98,7 @@
                         "name": "Offre Business",
                         "description": "Audit complet RGAA avec formation"
                     },
-                    "price": "350",
+                    "price": 399",
                     "priceCurrency": "EUR"
                 },
                 {
@@ -243,8 +243,121 @@
             </div>
         </section>
 
-        <!-- Slide 4: Amendes RGAA 2025 -->
-        <section class="slide" id="slide4" aria-labelledby="amendes">
+        <!-- Slide 4: Démonstration Avant/Après -->
+        <section class="slide" id="slide4" aria-labelledby="demo">
+            <div class="floating-shapes" aria-hidden="true">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            <div class="slide-content">
+                <h2 id="demo">Visualisez l'Impact sur Votre Site</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                    Découvrez concrètement comment l'accessibilité transforme l'expérience utilisateur
+                </p>
+
+                <!-- Simulateur de daltonisme -->
+                <div class="vision-simulator">
+                    <h3>🎨 Simulateur de Vision</h3>
+                    <div class="vision-controls">
+                        <button class="vision-btn active" data-filter="normal">👁️ Vision normale</button>
+                        <button class="vision-btn" data-filter="protanopia">🔴 Daltonisme rouge</button>
+                        <button class="vision-btn" data-filter="deuteranopia">🟢 Daltonisme vert</button>
+                        <button class="vision-btn" data-filter="tritanopia">🔵 Daltonisme bleu</button>
+                    </div>
+                </div>
+
+                <!-- Démonstration Avant/Après -->
+                <div class="demo-container">
+                    <div class="demo-toggle">
+                        <button class="demo-btn active" data-mode="before">❌ Avant (Non accessible)</button>
+                        <button class="demo-btn" data-mode="after">✅ Après (Accessible)</button>
+                    </div>
+
+                    <div class="demo-examples">
+                        <!-- Exemple 1: Contraste -->
+                        <div class="demo-example">
+                            <h4>Contraste des couleurs</h4>
+                            <div class="demo-showcase">
+                                <div class="demo-item before active">
+                                    <div class="bad-contrast">
+                                        <h5 style="color: #ccc; background: #ddd; padding: 1rem;">
+                                            Texte difficile à lire
+                                        </h5>
+                                        <p style="color: #aaa;">
+                                            Ce texte est presque invisible pour 13% de la population
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="demo-item after">
+                                    <div class="good-contrast">
+                                        <h5 style="color: #fff; background: #333; padding: 1rem;">
+                                            Texte parfaitement lisible
+                                        </h5>
+                                        <p style="color: #333;">
+                                            Ce texte respecte les ratios de contraste WCAG
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exemple 2: Boutons -->
+                        <div class="demo-example">
+                            <h4>Taille des boutons</h4>
+                            <div class="demo-showcase">
+                                <div class="demo-item before active">
+                                    <button style="padding: 0.2rem 0.5rem; font-size: 0.7rem; background: #ccc; border: none; color: #999;">
+                                        Clic difficile
+                                    </button>
+                                </div>
+                                <div class="demo-item after">
+                                    <button style="padding: 1rem 2rem; font-size: 1rem; background: #00f5ff; border: none; color: #000; border-radius: 5px; font-weight: bold;">
+                                        Bouton accessible
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exemple 3: Focus -->
+                        <div class="demo-example">
+                            <h4>Indicateurs de focus</h4>
+                            <div class="demo-showcase">
+                                <div class="demo-item before active">
+                                    <a href="#" style="color: #666; text-decoration: none; outline: none;" class="no-focus">
+                                        Lien invisible au clavier
+                                    </a>
+                                </div>
+                                <div class="demo-item after">
+                                    <a href="#" style="color: #00f5ff; text-decoration: underline; padding: 0.5rem; border-radius: 3px;" class="good-focus">
+                                        Lien bien visible
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Impact statistiques -->
+                    <div class="demo-impact">
+                        <div class="impact-stat">
+                            <span class="impact-number">+47%</span>
+                            <span class="impact-label">Utilisabilité mobile</span>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="impact-number">+23%</span>
+                            <span class="impact-label">Taux de conversion</span>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="impact-number">+61%</span>
+                            <span class="impact-label">Satisfaction utilisateur</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Amendes RGAA 2025 -->
+        <section class="slide" id="slide5" aria-labelledby="amendes">
             <div class="floating-shapes" aria-hidden="true">
                 <div class="shape"></div>
                 <div class="shape"></div>
@@ -302,8 +415,8 @@
             </div>
         </section>
 
-        <!-- Slide 5: Objectifs -->
-        <section class="slide" id="slide5" aria-labelledby="objectifs">
+        <!-- Slide 6: Objectifs -->
+        <section class="slide" id="slide6" aria-labelledby="objectifs">
             <div class="floating-shapes" aria-hidden="true">
                 <div class="shape"></div>
                 <div class="shape"></div>
@@ -327,8 +440,8 @@
             </div>
         </section>
 
-        <!-- Slide 6: Nos Offres -->
-        <section class="slide" id="slide6" aria-labelledby="offres">
+        <!-- Slide 7: Nos Offres -->
+        <section class="slide" id="slide7" aria-labelledby="offres">
             <div class="floating-shapes" aria-hidden="true">
                 <div class="shape"></div>
                 <div class="shape"></div>
@@ -339,17 +452,17 @@
                 <div class="pricing" role="list" aria-label="Grilles tarifaires">
                     <article class="price-card" role="listitem">
                         <h3>Offre Essential</h3>
-                        <div class="price" aria-label="150 euros">150€</div>
+                        <div class="price" aria-label="199 euros">199€</div>
                         <ul aria-label="Services inclus dans l'offre Essential">
                             <li>Diagnostic rapide et efficace</li>
                             <li>Conseils prioritaires</li>
                             <li>Rapport de synthèse</li>
                         </ul>
-                        <button class="btn" onclick="window.open('essential.html', '_blank')">Choisir Essential</button>
+                        <button class="btn" onclick="window.open('/essential', '_blank')">Choisir Essential</button>
                     </article>
                     <article class="price-card featured" role="listitem">
                         <h3>Offre Business</h3>
-                        <div class="price" aria-label="350 euros">350€</div>
+                        <div class="price" aria-label="399 euros">399€</div>
                         <div
                             style="background: #00f5ff; color: #000; padding: 0.5rem; border-radius: 20px; margin: 1rem 0;">
                             RECOMMANDÉ
@@ -360,7 +473,7 @@
                             <li>Plan d'action RGAA</li>
                             <li>Support prioritaire</li>
                         </ul>
-                        <button class="btn" onclick="window.open('business.html', '_blank')">Choisir Business</button>
+                        <button class="btn" onclick="window.open('/business', '_blank')">Choisir Business</button>
                     </article>
                     <article class="price-card" role="listitem">
                         <h3>Offre Enterprise</h3>
@@ -373,14 +486,14 @@
                             <li>Maintenance incluse</li>
                             <li>Support dédié</li>
                         </ul>
-                        <button class="btn" onclick="window.open('enterprise.html', '_blank')">Choisir Enterprise</button>
+                        <button class="btn" onclick="window.open('/enterprise', '_blank')">Choisir Enterprise</button>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 7: Call to Action -->
-        <section class="slide" id="slide7" aria-labelledby="cta">
+        <!-- Slide 8: Call to Action -->
+        <section class="slide" id="slide8" aria-labelledby="cta">
             <div class="floating-shapes" aria-hidden="true">
                 <div class="shape"></div>
                 <div class="shape"></div>
@@ -394,7 +507,7 @@
                         <p><strong>-20%</strong> sur toutes nos offres</p>
                         <p>Offre de lancement limitée</p>
                     </div>
-                    <div class="stat-card" role="listitem">
+                    <div class="stat-card contact-card" role="listitem" onclick="window.open('/contact', '_blank')" style="cursor: pointer; transition: transform 0.3s ease;">
                         <h3 style="color: #ff00aa;">📞 Contact Direct</h3>
                         <p>Échangeons sur votre projet</p>
                         <p>Devis personnalisé gratuit</p>
@@ -406,13 +519,38 @@
                     </div>
                 </div>
                 <div style="margin-top: 2rem; text-align: center;">
-                    <button class="btn" onclick="goToSlide(5)" style="font-size: 1.3rem; padding: 1.5rem 3rem;">
+                    <button class="btn" onclick="goToSlide(6)" style="font-size: 1.3rem; padding: 1.5rem 3rem;">
                         Commencer Maintenant
                     </button>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                        Ou <a href="/contact" style="color: #00f5ff; text-decoration: underline;">contactez-nous directement</a>
+                    </p>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Footer discret -->
+    <footer class="contact-footer" role="contentinfo">
+        <div class="contact-footer-content">
+            <div class="footer-main">
+                <div class="footer-contact">
+                    <strong>Accessi-web</strong>
+                    <span>•</span>
+                    <a href="mailto:contact@accessi-web.com">contact@accessi-web.com</a>
+                    <span>•</span>
+                    <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+                    <span>•</span>
+                    <a href="/contact">Contact</a>
+                </div>
+                <div class="footer-info">
+                    <span>Expert en Accessibilité Numérique RGAA - Val d'Oise</span>
+                    <span>•</span>
+                    <span>© 2025 - Tous droits réservés</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Navigation mobile sticky en bas -->
     <nav class="navigation" aria-label="Navigation entre les slides">
@@ -422,16 +560,19 @@
             data-label="Problème"></button>
         <button class="nav-dot" onclick="goToSlide(2)" aria-label="Aller à la slide 3 : Notre Solution"
             data-label="Solution"></button>
-        <button class="nav-dot" onclick="goToSlide(3)" aria-label="Aller à la slide 4 : Amendes RGAA 2025"
+        <button class="nav-dot" onclick="goToSlide(3)" aria-label="Aller à la slide 4 : Démonstration"
+            data-label="Démo"></button>
+        <button class="nav-dot" onclick="goToSlide(4)" aria-label="Aller à la slide 5 : Amendes RGAA 2025"
             data-label="Amendes"></button>
-        <button class="nav-dot" onclick="goToSlide(4)" aria-label="Aller à la slide 5 : Objectifs"
+        <button class="nav-dot" onclick="goToSlide(5)" aria-label="Aller à la slide 6 : Objectifs"
             data-label="Objectifs"></button>
-        <button class="nav-dot" onclick="goToSlide(5)" aria-label="Aller à la slide 6 : Nos Offres"
+        <button class="nav-dot" onclick="goToSlide(6)" aria-label="Aller à la slide 7 : Nos Offres"
             data-label="Offres"></button>
-        <button class="nav-dot" onclick="goToSlide(6)" aria-label="Aller à la slide 7 : Contact"
+        <button class="nav-dot" onclick="goToSlide(7)" aria-label="Aller à la slide 8 : Contact"
             data-label="Contact"></button>
     </nav>
 
+    <script src="js/url-handler.js"></script>
     <script src="script.js"></script>
 </body>
 

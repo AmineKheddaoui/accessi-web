@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Offre Essential - Amine Consulting</title>
-    <meta name="description" content="Commandez l'offre Essential d'audit d'accessibilité RGAA - 150€">
+    <meta name="description" content="Commandez l'offre Essential d'audit d'accessibilité RGAA - 199">
     <link rel="stylesheet" href="styles.css">
     <style>
         .purchase-page {
@@ -262,7 +262,7 @@
 </head>
 
 <body>
-    <a href="index.html" class="back-link">
+    <a href="/" class="back-link">
         ← Retour à la présentation
     </a>
 
@@ -272,7 +272,7 @@
 
             <h1>Commandez votre Audit d'Accessibilité</h1>
 
-            <div class="price-display" aria-label="150 euros">150€</div>
+            <div class="price-display" aria-label="199 euros">199€</div>
 
             <div class="features-list">
                 <h3>✨ Ce qui est inclus</h3>
@@ -285,25 +285,98 @@
                 </ul>
             </div>
 
-            <form class="form-section" action="http://localhost:5000/order/essential" method="GET">
+            <form class="form-section" id="essentialOrderForm">
                 <h3 style="text-align: center; margin-bottom: 1.5rem; color: #00f5ff;">
                     Commander maintenant
                 </h3>
 
-                <p style="text-align: center; margin-bottom: 2rem; color: #ccc;">
-                    Vous serez redirigé vers notre plateforme de commande sécurisée
-                </p>
+                <div class="form-group">
+                    <label for="company_name">Nom de l'entreprise <span class="required">*</span></label>
+                    <input type="text" id="company_name" name="company_name" required placeholder="Votre entreprise">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact_name">Nom du contact <span class="required">*</span></label>
+                    <input type="text" id="contact_name" name="contact_name" required placeholder="Votre nom">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Votre téléphone">
+                </div>
+
+                <div class="form-group">
+                    <label for="website_url">URL du site web <span class="required">*</span></label>
+                    <input type="url" id="website_url" name="website_url" required placeholder="https://votre-site.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="current_issues">Problèmes d'accessibilité actuels</label>
+                    <textarea id="current_issues" name="current_issues" rows="3" placeholder="Décrivez brièvement les problèmes que vous avez identifiés..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">Délais souhaités</label>
+                    <select id="timeline" name="timeline">
+                        <option value="">Sélectionnez un délai</option>
+                        <option value="urgent">Urgent (dans la semaine)</option>
+                        <option value="1-2weeks">1-2 semaines</option>
+                        <option value="1month">Dans le mois</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
 
                 <button type="submit" class="purchase-btn">
-                    🚀 Commander l'Offre Essential - 150€
+                    🚀 Commander l'Offre Essential - 199€
                 </button>
 
                 <p class="security-note">
-                    🔒 Paiement sécurisé • Satisfaction garantie • Livraison rapide
+                    🔒 Commande sécurisée • Satisfaction garantie • Livraison rapide
                 </p>
             </form>
         </div>
     </main>
+
+    <script>
+    document.getElementById('essentialOrderForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const button = this.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+        button.textContent = 'Traitement en cours...';
+        button.disabled = true;
+        
+        const formData = new FormData(this);
+        formData.append('offer_type', 'essential');
+        
+        try {
+            const response = await fetch('process-order.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                alert('Commande enregistrée avec succès ! Vous recevrez un email de confirmation.');
+                this.reset();
+            } else {
+                alert('Erreur : ' + result.message);
+            }
+        } catch (error) {
+            alert('Erreur de connexion : ' + error.message);
+        } finally {
+            button.textContent = originalText;
+            button.disabled = false;
+        }
+    });
+    </script>
+    <script src="js/url-handler.js"></script>
 </body>
 
 </html>

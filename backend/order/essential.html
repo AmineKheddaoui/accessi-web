@@ -228,7 +228,7 @@
             </div>
             <div class="offer-badge">🚀 Offre Essential</div>
             <h1>Audit d'accessibilité RGAA de base</h1>
-            <div class="price-display">150€</div>
+            <div class="price-display">199€</div>
             <p>Solution simple pour débuter votre conformité RGAA</p>
         </div>
 
@@ -249,7 +249,7 @@
             </ul>
         </div>
 
-        <form class="order-form" action="/submit_order" method="POST" id="orderForm">
+        <form class="order-form" action="/order/submit_order.php" method="POST" id="orderForm">
             <input type="hidden" name="product" value="Essential - Audit RGAA de Base">
             <input type="hidden" name="quantity" value="1">
 
@@ -288,7 +288,7 @@
                 <textarea id="project_description" name="project_description" placeholder="Précisions sur votre projet, besoins spécifiques..." rows="4"></textarea>
             </div>
 
-            <button type="submit" class="btn" id="submitBtn">🚀 Commander l'Offre Essential - 150€</button>
+            <button type="submit" class="btn" id="submitBtn">🚀 Commander l'Offre Essential - 199€</button>
             
             <p class="security-note">
                 🔒 Paiement sécurisé - Vos données sont protégées
@@ -327,7 +327,7 @@
             const formData = new FormData(this);
             
             // Envoyer la requête
-            fetch('/submit_order', {
+            fetch('/order/submit_order.php', {
                 method: 'POST',
                 body: formData
             })
@@ -340,6 +340,7 @@
                 document.getElementById('successMessage').style.display = 'block';
                 
                 console.log('Commande envoyée:', data);
+                print("ENVOI EMAIL : SUCCÈS");
             })
             .catch(error => {
                 console.error('Erreur:', error);

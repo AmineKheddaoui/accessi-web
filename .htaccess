@@ -1,0 +1,67 @@
+RewriteEngine On
+
+# Rediriger les URLs avec .html vers les URLs propres
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1? [NC,L,R=301]
+
+# Réécrire les URLs propres vers les fichiers .html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^.]+)$ $1.html [NC,L]
+
+# Redirection spécifique pour la page d'accueil
+RewriteRule ^home/?$ /index.html [NC,L]
+
+# Pages principales
+RewriteRule ^essential/?$ /essential.html [NC,L]
+RewriteRule ^business/?$ /business.html [NC,L]
+RewriteRule ^enterprise/?$ /enterprise.html [NC,L]
+RewriteRule ^contact/?$ /contact.html [NC,L]
+
+# Gestion des erreurs 404
+ErrorDocument 404 /404.html
+
+# Désactiver l'affichage du contenu des dossiers
+Options -Indexes
+
+# Cache et compression pour les performances
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Sécurité
+<Files ~ "^\.ht">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Empêcher l'accès aux fichiers de configuration
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "*.md">
+    Order allow,deny
+    Deny from all
+</Files>

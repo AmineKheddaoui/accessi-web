@@ -156,6 +156,126 @@ document.addEventListener('touchend', (e) => {
     startY = null;
 });
 
+// Fonctions pour la démo interactive
+function setupDemoInteractions() {
+    // Gestion des boutons de simulateur de vision
+    const visionButtons = document.querySelectorAll('.vision-btn');
+    visionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Retirer la classe active de tous les boutons
+            visionButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Ajouter la classe active au bouton cliqué
+            this.classList.add('active');
+            
+            // Retirer toutes les classes de filtre du body
+            document.body.classList.remove('protanopia', 'deuteranopia', 'tritanopia');
+            
+            // Ajouter la nouvelle classe de filtre si nécessaire
+            const filter = this.dataset.filter;
+            if (filter !== 'normal') {
+                document.body.classList.add(filter);
+            }
+            
+            // Annoncer le changement pour les lecteurs d'écran
+            const filterName = {
+                'normal': 'Vision normale',
+                'protanopia': 'Simulation daltonisme rouge',
+                'deuteranopia': 'Simulation daltonisme vert',
+                'tritanopia': 'Simulation daltonisme bleu'
+            }[filter];
+            
+            announceToScreenReader(`Filtre appliqué : ${filterName}`);
+        });
+    });
+    
+    // Gestion des boutons avant/après
+    const demoButtons = document.querySelectorAll('.demo-btn');
+    const demoItems = document.querySelectorAll('.demo-item');
+    
+    demoButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Retirer la classe active de tous les boutons
+            demoButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Ajouter la classe active au bouton cliqué
+            this.classList.add('active');
+            
+            // Récupérer le mode sélectionné
+            const mode = this.dataset.mode;
+            
+            // Mettre à jour l'affichage des exemples
+            demoItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.classList.contains(mode)) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Annoncer le changement pour les lecteurs d'écran
+            const modeName = mode === 'before' ? 'Avant - Non accessible' : 'Après - Accessible';
+            announceToScreenReader(`Affichage changé : ${modeName}`);
+        });
+    });
+    
+    // Animation des statistiques d'impact au scroll
+    const impactStats = document.querySelectorAll('.impact-number');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    impactStats.forEach(stat => observer.observe(stat));
+}
+
+// Animation des compteurs de statistiques
+function animateCounter(element) {
+    if (element.dataset.animated) return; // Éviter les animations multiples
+    
+    const text = element.textContent;
+    const number = parseInt(text.replace(/[^\d]/g, ''));
+    const duration = 2000; // 2 secondes
+    const startTime = performance.now();
+    
+    function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function pour une animation fluide
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const currentNumber = Math.floor(number * easeOutQuart);
+        
+        element.textContent = text.replace(/\d+/, currentNumber);
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.dataset.animated = 'true';
+        }
+    }
+    
+    requestAnimationFrame(updateCounter);
+}
+
+// Fonction utilitaire pour améliorer l'accessibilité des liens de focus
+function enhanceFocusLinks() {
+    const focusLinks = document.querySelectorAll('.good-focus');
+    focusLinks.forEach(link => {
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.style.background = 'rgba(0, 245, 255, 0.2)';
+                setTimeout(() => {
+                    this.style.background = '';
+                }, 200);
+            }
+        });
+    });
+}
+
 // Amélioration pour les utilisateurs avec des préférences de mouvement réduit
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -177,4 +297,6 @@ if (prefersReducedMotion) {
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', () => {
     updateNavigation();
+    setupDemoInteractions();
+    enhanceFocusLinks();
 });

@@ -240,7 +240,7 @@
 </head>
 
 <body>
-    <a href="index.html" class="back-link">
+    <a href="/" class="back-link">
         ← Retour à la présentation
     </a>
 
@@ -301,14 +301,75 @@
                 </div>
             </div>
 
-            <form class="form-section" action="http://localhost:5000/order/enterprise" method="GET">
+            <form class="form-section" id="enterpriseOrderForm">
                 <h3 style="text-align: center; margin-bottom: 1.5rem; color: #ffd700;">
                     Demander un devis personnalisé
                 </h3>
 
-                <p style="text-align: center; margin-bottom: 2rem; color: #ccc;">
-                    Vous serez redirigé vers notre plateforme de devis sécurisée
-                </p>
+                <div class="form-group">
+                    <label for="company_name">Nom de l'entreprise <span class="required">*</span></label>
+                    <input type="text" id="company_name" name="company_name" required placeholder="Votre entreprise">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact_name">Nom du contact <span class="required">*</span></label>
+                    <input type="text" id="contact_name" name="contact_name" required placeholder="Votre nom">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Téléphone <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Votre téléphone">
+                </div>
+
+                <div class="form-group">
+                    <label for="website_url">URL du site web <span class="required">*</span></label>
+                    <input type="url" id="website_url" name="website_url" required placeholder="https://votre-site.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="current_issues">Problèmes d'accessibilité actuels <span class="required">*</span></label>
+                    <textarea id="current_issues" name="current_issues" rows="4" required placeholder="Décrivez vos défis actuels en matière d'accessibilité..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="accessibility_goals">Objectifs d'accessibilité <span class="required">*</span></label>
+                    <textarea id="accessibility_goals" name="accessibility_goals" rows="4" required placeholder="Quels sont vos objectifs spécifiques ?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">Délais souhaités <span class="required">*</span></label>
+                    <select id="timeline" name="timeline" required>
+                        <option value="">Sélectionnez un délai</option>
+                        <option value="urgent">Urgent (dans la semaine)</option>
+                        <option value="1-2weeks">1-2 semaines</option>
+                        <option value="1month">Dans le mois</option>
+                        <option value="2-3months">2-3 mois</option>
+                        <option value="6months">6 mois</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget_range">Budget approximatif</label>
+                    <select id="budget_range" name="budget_range">
+                        <option value="">Sélectionnez une tranche</option>
+                        <option value="1000-5000">1 000€ - 5 000€</option>
+                        <option value="5000-10000">5 000€ - 10 000€</option>
+                        <option value="10000-25000">10 000€ - 25 000€</option>
+                        <option value="25000-50000">25 000€ - 50 000€</option>
+                        <option value="50000+">À définir</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="additional_info">Informations supplémentaires</label>
+                    <textarea id="additional_info" name="additional_info" rows="4" placeholder="Autres informations utiles sur votre projet..."></textarea>
+                </div>
 
                 <button type="submit" class="contact-btn">
                     💼 Demander un Devis Personnalisé
@@ -320,6 +381,42 @@
             </form>
         </div>
     </main>
+
+    <script>
+    document.getElementById('enterpriseOrderForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const button = this.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+        button.textContent = 'Traitement en cours...';
+        button.disabled = true;
+        
+        const formData = new FormData(this);
+        formData.append('offer_type', 'enterprise');
+        
+        try {
+            const response = await fetch('process-order.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                alert('Demande de devis enregistrée avec succès ! Vous recevrez un email de confirmation et nous vous contacterons sous 48h.');
+                this.reset();
+            } else {
+                alert('Erreur : ' + result.message);
+            }
+        } catch (error) {
+            alert('Erreur de connexion : ' + error.message);
+        } finally {
+            button.textContent = originalText;
+            button.disabled = false;
+        }
+    });
+    </script>
+    <script src="js/url-handler.js"></script>
 </body>
 
 </html>

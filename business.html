@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Offre Business - Amine Consulting</title>
-    <meta name="description" content="Commandez l'offre Business d'audit d'accessibilité RGAA complet - 350€">
+    <meta name="description" content="Commandez l'offre Business d'audit d'accessibilité RGAA complet - 399€">
     <link rel="stylesheet" href="styles.css">
     <style>
         .purchase-page {
@@ -210,7 +210,7 @@
 </head>
 
 <body>
-    <a href="index.html" class="back-link">
+    <a href="/" class="back-link">
         ← Retour à la présentation
     </a>
 
@@ -221,7 +221,7 @@
 
             <h1>Audit d'Accessibilité Complet</h1>
 
-            <div class="price-display" aria-label="350 euros">350€</div>
+            <div class="price-display" aria-label="399 euros">399€</div>
 
             <div class="business-highlight">
                 <h3 style="color: #00f5ff; margin-bottom: 1rem;">🏆 L'offre la plus populaire</h3>
@@ -243,25 +243,108 @@
                 </ul>
             </div>
 
-            <form class="form-section" action="http://localhost:5000/order/business" method="GET">
+            <form class="form-section" id="businessOrderForm">
                 <h3 style="text-align: center; margin-bottom: 1.5rem; color: #00f5ff;">
                     Commander maintenant
                 </h3>
 
-                <p style="text-align: center; margin-bottom: 2rem; color: #ccc;">
-                    Vous serez redirigé vers notre plateforme de commande sécurisée
-                </p>
+                <div class="form-group">
+                    <label for="company_name">Nom de l'entreprise <span class="required">*</span></label>
+                    <input type="text" id="company_name" name="company_name" required placeholder="Votre entreprise">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact_name">Nom du contact <span class="required">*</span></label>
+                    <input type="text" id="contact_name" name="contact_name" required placeholder="Votre nom">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Votre téléphone">
+                </div>
+
+                <div class="form-group">
+                    <label for="website_url">URL du site web <span class="required">*</span></label>
+                    <input type="url" id="website_url" name="website_url" required placeholder="https://votre-site.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="current_issues">Problèmes d'accessibilité actuels</label>
+                    <textarea id="current_issues" name="current_issues" rows="3" placeholder="Décrivez les problèmes que vous avez identifiés..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="accessibility_goals">Objectifs d'accessibilité</label>
+                    <textarea id="accessibility_goals" name="accessibility_goals" rows="3" placeholder="Quels sont vos objectifs en matière d'accessibilité ?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">Délais souhaités</label>
+                    <select id="timeline" name="timeline">
+                        <option value="">Sélectionnez un délai</option>
+                        <option value="urgent">Urgent (dans la semaine)</option>
+                        <option value="1-2weeks">1-2 semaines</option>
+                        <option value="1month">Dans le mois</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="additional_info">Informations supplémentaires</label>
+                    <textarea id="additional_info" name="additional_info" rows="3" placeholder="Autres informations utiles..."></textarea>
+                </div>
 
                 <button type="submit" class="purchase-btn">
-                    🚀 Commander l'Offre Business - 350€
+                    🚀 Commander l'Offre Business - 399€
                 </button>
 
                 <p class="security-note">
-                    🔒 Paiement sécurisé • Formation incluse • Suivi 3 mois • Satisfaction garantie
+                    🔒 Commande sécurisée • Formation incluse • Suivi 3 mois • Satisfaction garantie
                 </p>
             </form>
         </div>
     </main>
+
+    <script>
+    document.getElementById('businessOrderForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const button = this.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+        button.textContent = 'Traitement en cours...';
+        button.disabled = true;
+        
+        const formData = new FormData(this);
+        formData.append('offer_type', 'business');
+        
+        try {
+            const response = await fetch('process-order.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                alert('Commande enregistrée avec succès ! Vous recevrez un email de confirmation.');
+                this.reset();
+            } else {
+                alert('Erreur : ' + result.message);
+            }
+        } catch (error) {
+            alert('Erreur de connexion : ' + error.message);
+        } finally {
+            button.textContent = originalText;
+            button.disabled = false;
+        }
+    });
+    </script>
+    <script src="js/url-handler.js"></script>
 </body>
 
 </html>

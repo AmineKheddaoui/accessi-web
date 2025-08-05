@@ -421,6 +421,380 @@ ul li::before {
     border: 0;
 }
 
+/* Styles pour les formulaires de commande */
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #00f5ff;
+    box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form-group select option {
+    background: #333;
+    color: white;
+}
+
+.required {
+    color: #ff4500;
+}
+
+.form-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.purchase-btn,
+.contact-btn {
+    background: linear-gradient(45deg, #00f5ff, #ff00aa);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1.5rem 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+.purchase-btn:hover,
+.purchase-btn:focus,
+.contact-btn:hover,
+.contact-btn:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+.purchase-btn:disabled,
+.contact-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.security-note {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Footer discret */
+.contact-footer {
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 2rem 6rem;
+    margin-top: 2rem;
+}
+
+.contact-footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+}
+
+.footer-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+}
+
+.footer-contact strong {
+    color: #00f5ff;
+    font-size: 1rem;
+}
+
+.footer-contact span {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.footer-contact a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+    color: #00f5ff;
+    text-decoration: underline;
+}
+
+.footer-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-info span {
+    white-space: nowrap;
+}
+
+/* Animation hover pour la carte contact */
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Démonstration Avant/Après */
+.vision-simulator {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.vision-simulator h3 {
+    color: #00f5ff;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.vision-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.vision-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.vision-btn:hover,
+.vision-btn.active {
+    background: rgba(0, 245, 255, 0.3);
+    border-color: #00f5ff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.demo-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.demo-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.demo-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.demo-btn:hover,
+.demo-btn.active {
+    background: linear-gradient(45deg, #ff4500, #ff6b35);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.demo-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.demo-example {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.demo-example h4 {
+    color: #00f5ff;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.demo-showcase {
+    position: relative;
+    min-height: 120px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.demo-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    width: 90%;
+}
+
+.demo-item.active {
+    opacity: 1;
+}
+
+.demo-item.before.active {
+    opacity: 1;
+}
+
+.demo-item.after {
+    opacity: 0;
+}
+
+.demo-item.after.active {
+    opacity: 1;
+}
+
+/* Exemples spécifiques */
+.bad-contrast {
+    text-align: center;
+}
+
+.good-contrast {
+    text-align: center;
+}
+
+.no-focus:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.good-focus:focus {
+    outline: 3px solid #00f5ff !important;
+    outline-offset: 3px !important;
+    background: rgba(0, 245, 255, 0.1) !important;
+}
+
+/* Impact statistiques */
+.demo-impact {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.impact-stat {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    min-width: 150px;
+}
+
+.impact-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00f5ff;
+    margin-bottom: 0.5rem;
+}
+
+.impact-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Filtres daltonisme */
+body.protanopia .demo-showcase {
+    filter: url('#protanopia-filter');
+}
+
+body.deuteranopia .demo-showcase {
+    filter: url('#deuteranopia-filter');
+}
+
+body.tritanopia .demo-showcase {
+    filter: url('#tritanopia-filter');
+}
+
+/* Filtres CSS pour simuler le daltonisme */
+body.protanopia .demo-showcase {
+    filter: sepia(1) saturate(0.8) hue-rotate(-10deg);
+}
+
+body.deuteranopia .demo-showcase {
+    filter: sepia(1) saturate(0.6) hue-rotate(20deg);
+}
+
+body.tritanopia .demo-showcase {
+    filter: sepia(1) saturate(0.7) hue-rotate(180deg);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .slide h1 {
@@ -444,6 +818,69 @@ ul li::before {
     .nav-dot {
         min-height: 48px;
         min-width: 48px;
+    }
+
+    /* Footer responsive */
+    .contact-footer {
+        padding: 1rem 1rem 5rem;
+    }
+
+    .footer-contact {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .footer-info {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    /* Démo responsive */
+    .vision-controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .vision-btn {
+        width: 200px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .demo-toggle {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .demo-btn {
+        width: 250px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .demo-examples {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .demo-container {
+        padding: 1.5rem;
+    }
+
+    .demo-showcase {
+        min-height: 100px;
+        padding: 0.8rem;
+    }
+
+    .impact-stat {
+        min-width: 120px;
+        padding: 1rem;
+    }
+
+    .impact-number {
+        font-size: 1.5rem;
     }
 }
 
