@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Offre Essential - Amine Consulting</title>
     <meta name="description" content="Commandez l'offre Essential d'audit d'accessibilité RGAA - 199">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <style>
         .purchase-page {
             min-height: 100vh;
@@ -355,7 +355,7 @@
         formData.append('offer_type', 'essential');
         
         try {
-            const response = await fetch('process-order.php', {
+            const response = await fetch('/process-order.php', {
                 method: 'POST',
                 body: formData
             });
@@ -376,7 +376,7 @@
         }
     });
     </script>
-    <script src="js/url-handler.js"></script>
+    <script src="/js/url-handler.js"></script>
 </body>
 
 </html>

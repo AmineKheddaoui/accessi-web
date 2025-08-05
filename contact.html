@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Accessi-web | Expert en Accessibilité Numérique</title>
     <meta name="description" content="Contactez Accessi-web pour vos projets d'accessibilité numérique RGAA. Devis gratuit sous 24h.">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <style>
         .contact-page {
             min-height: 100vh;
@@ -327,7 +327,7 @@
         formData.append('form_type', 'contact');
         
         try {
-            const response = await fetch('process-contact.php', {
+            const response = await fetch('/process-contact.php', {
                 method: 'POST',
                 body: formData
             });
@@ -348,7 +348,7 @@
         }
     });
     </script>
-    <script src="js/url-handler.js"></script>
+    <script src="/js/url-handler.js"></script>
 </body>
 
 </html>

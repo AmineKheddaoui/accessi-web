@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Offre Enterprise - Amine Consulting</title>
     <meta name="description" content="Commandez l'offre Enterprise complète avec implémentation - À partir de 1000€">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <style>
         .purchase-page {
             min-height: 100vh;
@@ -395,7 +395,7 @@
         formData.append('offer_type', 'enterprise');
         
         try {
-            const response = await fetch('process-order.php', {
+            const response = await fetch('/process-order.php', {
                 method: 'POST',
                 body: formData
             });
@@ -416,7 +416,7 @@
         }
     });
     </script>
-    <script src="js/url-handler.js"></script>
+    <script src="/js/url-handler.js"></script>
 </body>
 
 </html>

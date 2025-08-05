@@ -7,6 +7,10 @@ RewriteRule ^ /%1? [NC,L,R=301]
 # Réécrire les URLs propres vers les fichiers .html
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/js/
+RewriteCond %{REQUEST_URI} !^/css/
+RewriteCond %{REQUEST_URI} !^/images/
+RewriteCond %{REQUEST_URI} !\.(?:css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$
 RewriteRule ^([^.]+)$ $1.html [NC,L]
 
 # Redirection spécifique pour la page d'accueil

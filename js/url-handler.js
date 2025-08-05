@@ -60,6 +60,48 @@ class URLHandler {
             }
             return originalOpen.call(window, url, target, features);
         };
+
+        // Intercepter les requêtes fetch pour le mode démo
+        if (this.isLocal) {
+            this.setupFetchInterceptor();
+        }
+    }
+
+    setupFetchInterceptor() {
+        const originalFetch = window.fetch;
+        
+        window.fetch = async (url, options) => {
+            // Détecter les requêtes vers les endpoints PHP
+            if (typeof url === 'string' && (url.includes('process-order.php') || url.includes('process-contact.php'))) {
+                console.log('🚀 Mode démo local activé - Simulation de la soumission du formulaire');
+                
+                // Simuler un délai de traitement
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Simuler une réponse réussie
+                return {
+                    ok: true,
+                    status: 200,
+                    json: async () => ({
+                        success: true,
+                        message: '✅ DÉMO LOCAL: Formulaire soumis avec succès ! En production, un email serait envoyé.',
+                        order_id: Math.floor(Math.random() * 1000),
+                        demo_mode: true
+                    })
+                };
+            }
+            
+            // Corriger les chemins des requêtes en production
+            if (typeof url === 'string' && !this.isLocal) {
+                // Si l'URL ne commence pas par / ou http, la préfixer avec /
+                if (!url.startsWith('/') && !url.startsWith('http')) {
+                    url = '/' + url;
+                }
+            }
+            
+            // Pour toutes les autres requêtes, utiliser fetch normal
+            return originalFetch(url, options);
+        };
     }
 
     // Méthode utilitaire pour les développeurs
