@@ -158,36 +158,8 @@ document.addEventListener('touchend', (e) => {
 
 // Fonctions pour la démo interactive
 function setupDemoInteractions() {
-    // Gestion des boutons de simulateur de vision
-    const visionButtons = document.querySelectorAll('.vision-btn');
-    visionButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Retirer la classe active de tous les boutons
-            visionButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Ajouter la classe active au bouton cliqué
-            this.classList.add('active');
-            
-            // Retirer toutes les classes de filtre du body
-            document.body.classList.remove('protanopia', 'deuteranopia', 'tritanopia');
-            
-            // Ajouter la nouvelle classe de filtre si nécessaire
-            const filter = this.dataset.filter;
-            if (filter !== 'normal') {
-                document.body.classList.add(filter);
-            }
-            
-            // Annoncer le changement pour les lecteurs d'écran
-            const filterName = {
-                'normal': 'Vision normale',
-                'protanopia': 'Simulation daltonisme rouge',
-                'deuteranopia': 'Simulation daltonisme vert',
-                'tritanopia': 'Simulation daltonisme bleu'
-            }[filter];
-            
-            announceToScreenReader(`Filtre appliqué : ${filterName}`);
-        });
-    });
+    // Initialiser le simulateur de daltonisme
+    initVisionSimulator();
     
     // Gestion des boutons avant/après
     const demoButtons = document.querySelectorAll('.demo-btn');
@@ -293,6 +265,62 @@ if (prefersReducedMotion) {
         announceToScreenReader(`Slide ${currentSlide + 1} : ${slideTitle}`);
     };
 }
+
+// Fonction d'initialisation du simulateur de daltonisme
+function initVisionSimulator() {
+    console.log('Initializing vision simulator...');
+    const visionButtons = document.querySelectorAll('.vision-btn');
+    
+    if (visionButtons.length === 0) {
+        console.log('No vision buttons found');
+        return;
+    }
+    
+    // Supprimer les anciens event listeners si ils existent
+    visionButtons.forEach(button => {
+        if (button._visionHandler) {
+            button.removeEventListener('click', button._visionHandler);
+        }
+    });
+    
+    visionButtons.forEach(button => {
+        const handler = function() {
+            console.log('Vision button clicked:', this.dataset.filter);
+            
+            // Retirer la classe active de tous les boutons
+            visionButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Ajouter la classe active au bouton cliqué
+            this.classList.add('active');
+            
+            // Retirer toutes les classes de filtre du body
+            document.body.classList.remove('protanopia', 'deuteranopia', 'tritanopia');
+            
+            // Ajouter la nouvelle classe de filtre si nécessaire
+            const filter = this.dataset.filter;
+            if (filter !== 'normal') {
+                document.body.classList.add(filter);
+            }
+            
+            // Annoncer le changement pour les lecteurs d'écran
+            const filterName = {
+                'normal': 'Vision normale',
+                'protanopia': 'Simulation daltonisme rouge',
+                'deuteranopia': 'Simulation daltonisme vert',
+                'tritanopia': 'Simulation daltonisme bleu'
+            }[filter];
+            
+            announceToScreenReader(`Filtre appliqué : ${filterName}`);
+        };
+        
+        // Stocker le handler pour pouvoir le supprimer plus tard
+        button._visionHandler = handler;
+        button.addEventListener('click', handler);
+    });
+}
+
+// Exposer la fonction globalement
+window.initVisionSimulator = initVisionSimulator;
 
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', () => {

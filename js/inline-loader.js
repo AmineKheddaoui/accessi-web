@@ -7,24 +7,25 @@
     
     console.log('Inline loader - Current path:', currentPath, 'Base path:', basePath);
     
-    // Charger CSS immédiatement
+    // Charger CSS immédiatement avec cache busting
     const css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = basePath + 'styles.css';
+    const version = new Date().getTime();
+    css.href = basePath + 'styles.css?v=' + version;
     css.onerror = function() {
         console.log('CSS failed with', this.href, 'trying without basePath');
-        this.href = 'styles.css';
+        this.href = 'styles.css?v=' + version;
     };
     document.head.appendChild(css);
     
-    // Fonction pour charger les scripts
+    // Fonction pour charger les scripts avec cache busting
     function loadScript(src, callback) {
         const script = document.createElement('script');
-        script.src = basePath + src;
+        script.src = basePath + src + '?v=' + version;
         script.onload = callback;
         script.onerror = function() {
             console.log('Script failed with', this.src, 'trying without basePath');
-            this.src = src;
+            this.src = src + '?v=' + version;
         };
         document.head.appendChild(script);
     }
@@ -33,6 +34,12 @@
     loadScript('js/asset-loader.js', function() {
         loadScript('script.js', function() {
             console.log('All scripts loaded');
+            // Forcer la réinitialisation du simulateur après chargement
+            setTimeout(function() {
+                if (typeof window.initVisionSimulator === 'function') {
+                    window.initVisionSimulator();
+                }
+            }, 100);
         });
     });
     
