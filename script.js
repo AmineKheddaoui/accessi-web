@@ -161,34 +161,8 @@ function setupDemoInteractions() {
     // Initialiser le simulateur de daltonisme
     initVisionSimulator();
     
-    // Gestion des boutons avant/après
-    const demoButtons = document.querySelectorAll('.demo-btn');
-    const demoItems = document.querySelectorAll('.demo-item');
-    
-    demoButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Retirer la classe active de tous les boutons
-            demoButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Ajouter la classe active au bouton cliqué
-            this.classList.add('active');
-            
-            // Récupérer le mode sélectionné
-            const mode = this.dataset.mode;
-            
-            // Mettre à jour l'affichage des exemples
-            demoItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.classList.contains(mode)) {
-                    item.classList.add('active');
-                }
-            });
-            
-            // Annoncer le changement pour les lecteurs d'écran
-            const modeName = mode === 'before' ? 'Avant - Non accessible' : 'Après - Accessible';
-            announceToScreenReader(`Affichage changé : ${modeName}`);
-        });
-    });
+    // Initialiser les boutons avant/après
+    initBeforeAfterToggle();
     
     // Animation des statistiques d'impact au scroll
     const impactStats = document.querySelectorAll('.impact-number');
@@ -321,6 +295,62 @@ function initVisionSimulator() {
 
 // Exposer la fonction globalement
 window.initVisionSimulator = initVisionSimulator;
+
+// Fonction d'initialisation du toggle avant/après
+function initBeforeAfterToggle() {
+    console.log('Initializing before/after toggle...');
+    const demoButtons = document.querySelectorAll('.demo-btn');
+    const demoItems = document.querySelectorAll('.demo-item');
+    
+    console.log('Found demo buttons:', demoButtons.length);
+    console.log('Found demo items:', demoItems.length);
+    
+    if (demoButtons.length === 0) {
+        console.log('No demo buttons found');
+        return;
+    }
+    
+    // Supprimer les anciens event listeners si ils existent
+    demoButtons.forEach(button => {
+        if (button._demoHandler) {
+            button.removeEventListener('click', button._demoHandler);
+        }
+    });
+    
+    demoButtons.forEach(button => {
+        const handler = function() {
+            console.log('Demo button clicked:', this.dataset.mode);
+            
+            // Retirer la classe active de tous les boutons
+            demoButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Ajouter la classe active au bouton cliqué
+            this.classList.add('active');
+            
+            // Récupérer le mode sélectionné
+            const mode = this.dataset.mode;
+            
+            // Mettre à jour l'affichage des exemples
+            demoItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.classList.contains(mode)) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Annoncer le changement pour les lecteurs d'écran
+            const modeName = mode === 'before' ? 'Avant - Non accessible' : 'Après - Accessible';
+            announceToScreenReader(`Affichage changé : ${modeName}`);
+        };
+        
+        // Stocker le handler pour pouvoir le supprimer plus tard
+        button._demoHandler = handler;
+        button.addEventListener('click', handler);
+    });
+}
+
+// Exposer la fonction globalement
+window.initBeforeAfterToggle = initBeforeAfterToggle;
 
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', () => {

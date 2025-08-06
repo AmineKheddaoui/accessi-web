@@ -34,10 +34,13 @@
     loadScript('js/asset-loader.js', function() {
         loadScript('script.js', function() {
             console.log('All scripts loaded');
-            // Forcer la réinitialisation du simulateur après chargement
+            // Forcer la réinitialisation des interactions après chargement
             setTimeout(function() {
                 if (typeof window.initVisionSimulator === 'function') {
                     window.initVisionSimulator();
+                }
+                if (typeof window.initBeforeAfterToggle === 'function') {
+                    window.initBeforeAfterToggle();
                 }
             }, 100);
         });
