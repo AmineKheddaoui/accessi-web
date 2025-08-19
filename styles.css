@@ -194,6 +194,25 @@ body {
     min-width: 280px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
+    text-align: left;
+}
+
+.price-card h3 {
+    text-align: center;
+}
+
+.price-card .price {
+    text-align: center;
+}
+
+.price-card .btn {
+    display: block;
+    text-align: center;
+    margin: 1.5rem auto 0;
+}
+
+.price-card > div[style*="background"] {
+    text-align: center;
 }
 
 .price-card:hover,
@@ -432,6 +451,21 @@ ul li::before {
 
 ul {
     text-align: center;
+}
+
+/* Liste en colonne pour certaines sections */
+.column-list {
+    text-align: left !important;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.column-list li {
+    display: block !important;
+    width: 100% !important;
+    margin: 0.5rem 0 !important;
+    padding-left: 1.5rem !important;
+    text-align: left !important;
 }
 
 /* Screen reader only content */
