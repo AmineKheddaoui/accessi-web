@@ -42,6 +42,10 @@
                 if (typeof window.initBeforeAfterToggle === 'function') {
                     window.initBeforeAfterToggle();
                 }
+                // Initialiser les outils d'accessibilité
+                if (typeof window.initAccessibilityTools === 'function') {
+                    window.initAccessibilityTools();
+                }
             }, 100);
         });
     });

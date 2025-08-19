@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm start)",
+      "Bash(npm install:*)",
+      "Bash(npx cap init:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx cap add:*)",
+      "Bash(npm run mobile:sync:*)",
+      "Bash(npx cap:*)",
+      "Bash(set PORT=3001)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(start index.html)",
+      "Bash(dir:*)",
+      "Bash(touch:*)",
+      "Bash(mkdir:*)",
+      "Bash(curl:*)",
+      "Bash(copy:*)",
+      "Bash(cp:*)",
+      "Bash(node server.js)",
+      "Bash(start http://localhost:3000/test-auth-flow.html)",
+      "Bash(taskkill:*)",
+      "Bash(wmic process where:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
