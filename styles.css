@@ -1942,3 +1942,11 @@ body.high-contrast .floating-shapes .shape {
         font-size: 1.1rem !important;
     }
 }
+
+/* Footer badge */
+.footer-badges {
+    position: fixed;
+    width: 50px;
+    bottom: 20px;
+    right: 20px;
+}
