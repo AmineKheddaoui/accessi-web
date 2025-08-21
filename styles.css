@@ -472,6 +472,171 @@ ul {
     text-align: left !important;
 }
 
+/* ==============================================
+   LOGO STYLES
+   ============================================== */
+
+/* Logo dans le header */
+.header-logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 8888; /* Sous la barre d'accessibilité */
+    
+    /* Touch target WCAG compliant */
+    min-width: 44px;
+    min-height: 44px;
+    padding: 2px;
+    
+    /* Centrage du logo dans le carré */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Effets visuels */
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Transitions */
+    transition: all 0.3s ease;
+    text-decoration: none;
+    
+    /* Animation d'entrée */
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.header-logo:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.header-logo:focus {
+    outline: 3px solid #00f5ff;
+    outline-offset: 2px;
+    background: rgba(0, 245, 255, 0.2);
+}
+
+.header-logo img {
+    width: 40px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Logo dans la slide de présentation */
+.slide-logo {
+    width: 220px;
+    height: auto;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+    animation: logoFadeIn 1s ease-out 0.5s both;
+}
+
+@keyframes logoFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Logo dans le footer */
+.footer-logo {
+    width: 20px;
+    height: auto;
+    opacity: 0.8;
+    margin-right: 8px;
+    vertical-align: middle;
+    transition: all 0.2s ease;
+}
+
+.footer-logo:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Responsive Design pour les logos */
+@media (max-width: 768px) {
+    .header-logo {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .header-logo img {
+        width: 28px;
+    }
+    
+    .slide-logo {
+        width: 110px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .footer-logo {
+        width: 18px;
+    }
+}
+
+@media (max-width: 400px) {
+    .header-logo {
+        top: 12px;
+        left: 12px;
+    }
+    
+    .header-logo img {
+        width: 24px;
+    }
+    
+    .slide-logo {
+        width: 65px;
+        margin-bottom: 1rem;
+    }
+    
+    .footer-logo {
+        width: 16px;
+    }
+}
+
+/* Orientation landscape mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .header-logo {
+        top: 10px;
+        left: 10px;
+        padding: 1px;
+    }
+    
+    .header-logo img {
+        width: 24px;
+    }
+    
+    .slide-logo {
+        width: 60px;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Mode contraste élevé */
+.high-contrast .header-logo img,
+.high-contrast .footer-logo,
+.high-contrast .slide-logo {
+    filter: contrast(1.2) brightness(1.1);
+}
+
 /* Séparateurs de sections */
 .section-separator {
     width: 100%;
