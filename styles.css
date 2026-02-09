@@ -1721,7 +1721,7 @@ body.high-contrast .floating-shapes .shape {
 /* Police dyslexia */
 body.dyslexia-font,
 body.dyslexia-font * {
-    font-family: 'OpenDyslexic', 'Comic Sans MS', 'Arial', sans-serif !important;
+    font-family: 'OpenDyslexic', sans-serif !important;
 }
 
 /* Indicateur de lecture audio */
