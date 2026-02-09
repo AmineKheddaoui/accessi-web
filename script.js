@@ -375,6 +375,7 @@ function initAccessibilityTools() {
     const fontSizeSlider = document.getElementById('font-size-slider');
     const fontSizeValue = document.getElementById('font-size-value');
     const highContrast = document.getElementById('high-contrast');
+    const dyslexiaFont = document.getElementById('dyslexia-font');
     const resetAccessibility = document.getElementById('reset-accessibility');
 
     console.log('🦽 Elements found:', {
@@ -385,6 +386,7 @@ function initAccessibilityTools() {
         fontSizeSlider: !!fontSizeSlider,
         fontSizeValue: !!fontSizeValue,
         highContrast: !!highContrast,
+        dyslexiaFont: !!dyslexiaFont,
         resetAccessibility: !!resetAccessibility
     });
 
@@ -517,6 +519,23 @@ function initAccessibilityTools() {
         localStorage.setItem('accessibility-high-contrast', isActive);
     });
 
+    // Police dyslexia
+    dyslexiaFont.addEventListener('click', () => {
+        const isActive = document.body.classList.toggle('dyslexia-font');
+        dyslexiaFont.classList.toggle('active', isActive);
+        dyslexiaFont.setAttribute('aria-label', 
+            isActive ? 'Désactiver la police dyslexia' : 'Activer la police dyslexia'
+        );
+        
+        // Sauvegarder la préférence
+        localStorage.setItem('accessibility-dyslexia-font', isActive);
+        
+        // Annoncer le changement
+        announceToScreenReader(
+            isActive ? 'Police dyslexia activée' : 'Police dyslexia désactivée'
+        );
+    });
+
     // Réinitialiser
     resetAccessibility.addEventListener('click', () => {
         fontSize = 100;
@@ -525,6 +544,10 @@ function initAccessibilityTools() {
         document.body.classList.remove('high-contrast');
         highContrast.classList.remove('active');
         highContrast.setAttribute('aria-label', 'Activer/désactiver le mode haute contraste');
+        
+        document.body.classList.remove('dyslexia-font');
+        dyslexiaFont.classList.remove('active');
+        dyslexiaFont.setAttribute('aria-label', 'Activer/désactiver la police dyslexia');
         
         if (isReading) {
             speechSynthesis.cancel();
@@ -539,6 +562,7 @@ function initAccessibilityTools() {
         // Supprimer les préférences sauvegardées
         localStorage.removeItem('accessibility-font-size');
         localStorage.removeItem('accessibility-high-contrast');
+        localStorage.removeItem('accessibility-dyslexia-font');
         
         announceToScreenReader('Paramètres d\'accessibilité réinitialisés');
     });
@@ -556,6 +580,13 @@ function initAccessibilityTools() {
             document.body.classList.add('high-contrast');
             highContrast.classList.add('active');
             highContrast.setAttribute('aria-label', 'Activer/désactiver le mode haute contraste');
+        }
+
+        const savedDyslexiaFont = localStorage.getItem('accessibility-dyslexia-font');
+        if (savedDyslexiaFont === 'true') {
+            document.body.classList.add('dyslexia-font');
+            dyslexiaFont.classList.add('active');
+            dyslexiaFont.setAttribute('aria-label', 'Désactiver la police dyslexia');
         }
     }
 

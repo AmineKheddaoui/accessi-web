@@ -1715,6 +1715,15 @@ body.high-contrast .floating-shapes .shape {
     display: none;
 }
 
+/* Police dyslexia - Import de la police OpenDyslexic */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/open-dyslexic/1.0.3/open-dyslexic-regular.css');
+
+/* Police dyslexia */
+body.dyslexia-font,
+body.dyslexia-font * {
+    font-family: 'OpenDyslexic', 'Comic Sans MS', 'Arial', sans-serif !important;
+}
+
 /* Indicateur de lecture audio */
 .reading-text {
     background: #ffff00 !important;
