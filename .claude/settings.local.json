@@ -22,7 +22,8 @@
       "Bash(node server.js)",
       "Bash(start http://localhost:3000/test-auth-flow.html)",
       "Bash(taskkill:*)",
-      "Bash(wmic process where:*)"
+      "Bash(wmic process where:*)",
+      "Bash(php -v:*)"
     ],
     "deny": [],
     "ask": []

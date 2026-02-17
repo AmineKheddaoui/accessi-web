@@ -164,19 +164,22 @@ class ContactEmailer {
     }
 
     private function sendEmail($to, $subject, $message) {
-        $headers = array(
-            'From' => $this->from_email,
-            'Reply-To' => $this->from_email,
-            'X-Mailer' => 'PHP/' . phpversion(),
-            'Content-Type' => 'text/html; charset=UTF-8'
+        require_once __DIR__ . '/includes/smtp.php';
+
+        $smtp = new SmtpClient(
+            $this->smtp_host,
+            $this->smtp_port,
+            $this->smtp_user,
+            $this->smtp_pass
         );
 
-        $headers_string = '';
-        foreach ($headers as $key => $value) {
-            $headers_string .= $key . ': ' . $value . "\r\n";
+        $result = $smtp->send($this->from_email, $to, $subject, $message);
+
+        if (!$result) {
+            error_log("ContactEmailer SMTP error: " . $smtp->getLastError());
         }
 
-        return mail($to, $subject, $message, $headers_string);
+        return $result;
     }
 
     private function getContactConfirmationTemplate($contactData) {
