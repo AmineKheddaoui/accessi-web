@@ -1,0 +1,92 @@
+/* ============================================
+   Page A propos
+   ============================================ */
+
+/* Mission */
+.mission-text {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-relaxed);
+    color: var(--text-secondary);
+}
+
+/* Values grid */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+}
+
+.value-card {
+    text-align: center;
+    padding: var(--space-xl);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.value-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.value-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    font-size: 1.5rem;
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-lg);
+}
+
+.value-card__title {
+    font-size: var(--fs-h4);
+    margin-bottom: var(--space-sm);
+}
+
+.value-card__text {
+    color: var(--text-secondary);
+    font-size: var(--fs-small);
+}
+
+/* Expertise grid */
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+}
+
+.expertise-card {
+    padding: var(--space-xl);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+}
+
+.expertise-card__title {
+    font-size: var(--fs-h4);
+    color: var(--color-primary-dark);
+    margin-bottom: var(--space-md);
+}
+
+.expertise-card__text {
+    color: var(--text-secondary);
+    font-size: var(--fs-small);
+    line-height: var(--lh-relaxed);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .values-grid,
+    .expertise-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,134 @@
+/* ============================================
+   Page Contact
+   ============================================ */
+
+/* Contact grid */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-3xl);
+    align-items: start;
+}
+
+/* Contact info column */
+.contact-info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.contact-info-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-info-card__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    font-size: 1.25rem;
+    font-weight: var(--fw-bold);
+}
+
+.contact-info-card__title {
+    font-size: var(--fs-body);
+    font-weight: var(--fw-semibold);
+    margin-bottom: var(--space-xs);
+}
+
+.contact-info-card__text {
+    color: var(--text-secondary);
+    font-size: var(--fs-small);
+    margin-bottom: 0;
+}
+
+.contact-info-card__text a {
+    color: var(--color-primary-dark);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.contact-info-card__text a:hover {
+    color: var(--color-secondary);
+}
+
+.contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+/* Contact form card */
+.contact-form-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-md);
+}
+
+.contact-form-card__title {
+    font-size: var(--fs-h3);
+    margin-bottom: var(--space-xl);
+    text-align: center;
+}
+
+/* Availability section */
+.availability-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+}
+
+.availability-card {
+    text-align: center;
+    padding: var(--space-lg);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+}
+
+.availability-card__time {
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-bold);
+    color: var(--color-primary-dark);
+    margin-bottom: var(--space-xs);
+}
+
+.availability-card__desc {
+    color: var(--text-secondary);
+    font-size: var(--fs-small);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .availability-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-form-card {
+        padding: var(--space-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .availability-grid {
+        grid-template-columns: 1fr;
+    }
+}

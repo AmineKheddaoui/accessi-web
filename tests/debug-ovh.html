@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug OVH - Accessi-web</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #00ff00;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #333;
+        }
+        .success { border-color: #00ff00; background: #004400; }
+        .error { border-color: #ff0000; background: #440000; color: #ff9999; }
+        .warning { border-color: #ffaa00; background: #443300; color: #ffcc99; }
+        button {
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: inherit;
+            margin: 0.5rem;
+        }
+        button:hover { background: #00cc00; }
+        pre {
+            background: #1a1a1a;
+            padding: 1rem;
+            border-radius: 3px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        .url-info {
+            background: #004444;
+            color: #00ffff;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Diagnostic OVH - Accessi-web</h1>
+        
+        <div class="url-info">
+            <h3>📍 Informations URL actuelle</h3>
+            <div id="url-info">Chargement...</div>
+        </div>
+
+        <div class="test-section" id="php-test">
+            <h3>🐘 Test PHP de base</h3>
+            <button onclick="testPHP()">Tester PHP</button>
+            <div id="php-result">Cliquez pour tester</div>
+        </div>
+
+        <div class="test-section" id="fetch-basic">
+            <h3>🌐 Test Fetch basique</h3>
+            <button onclick="testFetchBasic()">Test depuis racine</button>
+            <button onclick="testFetchFromCleanURL()">Test depuis URL propre</button>
+            <div id="fetch-basic-result">Cliquez pour tester</div>
+        </div>
+
+        <div class="test-section" id="order-test">
+            <h3>📝 Test Formulaire de commande</h3>
+            <button onclick="testOrderForm()">Tester process-order.php</button>
+            <div id="order-result">Cliquez pour tester</div>
+        </div>
+
+        <div class="test-section" id="contact-test">
+            <h3>💬 Test Formulaire de contact</h3>
+            <button onclick="testContactForm()">Tester process-contact.php</button>
+            <div id="contact-result">Cliquez pour tester</div>
+        </div>
+
+        <div class="test-section" id="paths-test">
+            <h3>📁 Test des chemins</h3>
+            <button onclick="testAllPaths()">Tester tous les chemins</button>
+            <div id="paths-result">Cliquez pour tester</div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔗 Navigation test</h3>
+            <p>
+                <a href="/" style="color: #00ffff;">🏠 Accueil</a> |
+                <a href="/essential" style="color: #00ffff;">⚡ Essential</a> |
+                <a href="/business" style="color: #00ffff;">💼 Business</a> |
+                <a href="/contact" style="color: #00ffff;">📞 Contact</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="../assets/js/inline-loader.js"></script>
+    <script>
+        // Afficher les informations URL
+        function updateURLInfo() {
+            const info = {
+                'URL complète': window.location.href,
+                'Protocole': window.location.protocol,
+                'Hostname': window.location.hostname,
+                'Port': window.location.port || 'défaut',
+                'Pathname': window.location.pathname,
+                'Search': window.location.search || 'aucun',
+                'Hash': window.location.hash || 'aucun',
+                'Origin': window.location.origin
+            };
+            
+            let html = '<table style="width:100%">';
+            for (const [key, value] of Object.entries(info)) {
+                html += `<tr><td style="padding:0.25rem; font-weight:bold">${key}:</td><td style="padding:0.25rem">${value}</td></tr>`;
+            }
+            html += '</table>';
+            
+            document.getElementById('url-info').innerHTML = html;
+        }
+
+        // Test PHP de base
+        async function testPHP() {
+            const resultDiv = document.getElementById('php-result');
+            resultDiv.innerHTML = '⏳ Test en cours...';
+            
+            try {
+                const response = await fetch('test-ovh.php', {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                document.getElementById('php-test').className = 'test-section success';
+                resultDiv.innerHTML = `
+                    <strong>✅ PHP fonctionne !</strong><br>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('php-test').className = 'test-section error';
+                resultDiv.innerHTML = `<strong>❌ Erreur PHP:</strong><br><pre>${error.message}</pre>`;
+            }
+        }
+
+        // Test fetch basique
+        async function testFetchBasic() {
+            await testFetch('test-ovh.php', 'fetch-basic-result', 'Racine');
+        }
+
+        async function testFetchFromCleanURL() {
+            // Simuler qu'on est sur une URL propre
+            await testFetch('../test-ovh.php', 'fetch-basic-result', 'URL propre');
+        }
+
+        async function testFetch(url, resultId, context) {
+            const resultDiv = document.getElementById(resultId);
+            resultDiv.innerHTML += `⏳ Test ${context}: ${url}<br>`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                resultDiv.innerHTML += `✅ ${context}: OK<br>`;
+                console.log(`${context} success:`, data);
+            } catch (error) {
+                resultDiv.innerHTML += `❌ ${context}: ${error.message}<br>`;
+                console.error(`${context} error:`, error);
+            }
+        }
+
+        // Test formulaire de commande
+        async function testOrderForm() {
+            const resultDiv = document.getElementById('order-result');
+            resultDiv.innerHTML = '⏳ Test commande...';
+            
+            const formData = new FormData();
+            formData.append('offer_type', 'business');
+            formData.append('company_name', 'Test Company');
+            formData.append('contact_name', 'Test User');
+            formData.append('email', 'test@example.com');
+            formData.append('website_url', 'https://test.com');
+            
+            try {
+                const response = await fetch('process-order.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                document.getElementById('order-test').className = response.ok ? 'test-section success' : 'test-section warning';
+                resultDiv.innerHTML = `
+                    <strong>${response.ok ? '✅' : '⚠️'} Réponse reçue:</strong><br>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('order-test').className = 'test-section error';
+                resultDiv.innerHTML = `<strong>❌ Erreur:</strong><br><pre>${error.message}</pre>`;
+            }
+        }
+
+        // Test formulaire de contact
+        async function testContactForm() {
+            const resultDiv = document.getElementById('contact-result');
+            resultDiv.innerHTML = '⏳ Test contact...';
+            
+            const formData = new FormData();
+            formData.append('contact_name', 'Test User');
+            formData.append('contact_email', 'test@example.com');
+            formData.append('contact_subject', 'info');
+            formData.append('contact_message', 'Message de test');
+            
+            try {
+                const response = await fetch('process-contact.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                document.getElementById('contact-test').className = response.ok ? 'test-section success' : 'test-section warning';
+                resultDiv.innerHTML = `
+                    <strong>${response.ok ? '✅' : '⚠️'} Réponse reçue:</strong><br>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('contact-test').className = 'test-section error';
+                resultDiv.innerHTML = `<strong>❌ Erreur:</strong><br><pre>${error.message}</pre>`;
+            }
+        }
+
+        // Test tous les chemins possibles
+        async function testAllPaths() {
+            const resultDiv = document.getElementById('paths-result');
+            const paths = [
+                'test-ovh.php',
+                './test-ovh.php', 
+                '../test-ovh.php',
+                '/test-ovh.php'
+            ];
+            
+            resultDiv.innerHTML = '⏳ Test de tous les chemins...<br>';
+            
+            for (const path of paths) {
+                try {
+                    const response = await fetch(path);
+                    const ok = response.ok;
+                    resultDiv.innerHTML += `${ok ? '✅' : '❌'} ${path}: ${response.status}<br>`;
+                } catch (error) {
+                    resultDiv.innerHTML += `❌ ${path}: ${error.message}<br>`;
+                }
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            updateURLInfo();
+            console.log('🔧 Debug OVH loaded');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/frontend/index.html" },
+    { "source": "/essential", "destination": "/frontend/essential.html" },
+    { "source": "/business", "destination": "/frontend/business.html" },
+    { "source": "/enterprise", "destination": "/frontend/enterprise.html" },
+    { "source": "/contact", "destination": "/frontend/contact.html" },
+    { "source": "/blog", "destination": "/frontend/blog.html" },
+    { "source": "/a-propos", "destination": "/frontend/a-propos.html" },
+    { "source": "/simulateur", "destination": "/frontend/simulateur.html" },
+    { "source": "/logos", "destination": "/frontend/logos.html" }
+  ],
+  "headers": [
+    {
+      "source": "/assets/**",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }]
+    }
+  ]
+}

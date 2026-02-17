@@ -1,0 +1,79 @@
+/* ============================================
+   Accessibilite
+   ============================================ */
+
+/* Screen-reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* High contrast mode */
+body.high-contrast {
+    --bg-primary: #000;
+    --bg-secondary: #111;
+    --bg-dark: #000;
+    --text-primary: #fff;
+    --text-secondary: #ddd;
+    --text-on-dark: #fff;
+    --text-on-dark-muted: #ccc;
+    --border-subtle: #555;
+    --border-medium: #777;
+    --color-primary: #00f5ff;
+    --color-primary-dark: #00f5ff;
+    --color-primary-light: #002;
+    --color-secondary: #ff00aa;
+}
+
+body.high-contrast .card,
+body.high-contrast .card-pricing {
+    background: #111;
+    border-color: #555;
+}
+
+body.high-contrast .navbar {
+    background: #000;
+    border-color: #555;
+}
+
+body.high-contrast .hero__shape {
+    display: none;
+}
+
+/* Dyslexia font */
+body.dyslexia-font,
+body.dyslexia-font * {
+    font-family: var(--font-family-dyslexia) !important;
+    line-height: 1.8 !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.1em !important;
+}
+
+/* High contrast user preference */
+@media (prefers-contrast: high) {
+    :root {
+        --border-subtle: #999;
+        --border-medium: #666;
+    }
+
+    .card,
+    .card-pricing {
+        border-width: 3px;
+    }
+}
+
+/* Live region for screen reader announcements */
+#sr-announcer {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}

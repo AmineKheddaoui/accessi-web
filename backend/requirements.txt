@@ -1,5 +1,0 @@
-Flask
-Flask-Mail
-# WeasyPrint
-python-dotenv
-gunicorn

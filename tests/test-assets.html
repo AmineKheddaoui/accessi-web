@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Assets - Accessi-web</title>
+    <!-- CSS sera chargé dynamiquement -->
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+        .test-item {
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        .success { border-color: #00ff00; background: rgba(0, 255, 0, 0.1); }
+        .error { border-color: #ff0000; background: rgba(255, 0, 0, 0.1); }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Test des Assets en Production</h1>
+        
+        <div class="test-item" id="css-test">
+            <h3>📄 CSS (styles.css)</h3>
+            <p id="css-status">⏳ Test en cours...</p>
+        </div>
+        
+        <div class="test-item" id="js-test">
+            <h3>⚡ JavaScript (url-handler.js)</h3>
+            <p id="js-status">⏳ Test en cours...</p>
+        </div>
+        
+        <div class="test-item" id="demo-test">
+            <h3>🎨 Simulateur Daltonisme</h3>
+            <div class="vision-controls" style="margin: 1rem 0;">
+                <button class="vision-btn active" data-filter="normal">👁️ Normal</button>
+                <button class="vision-btn" data-filter="protanopia">🔴 Rouge</button>
+                <button class="vision-btn" data-filter="deuteranopia">🟢 Vert</button>
+            </div>
+            <div class="demo-showcase" style="background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff); height: 50px; border-radius: 10px;">
+                Testez les filtres daltonisme
+            </div>
+            <p id="demo-status">⏳ Test en cours...</p>
+        </div>
+        
+        <div class="test-item" id="fetch-test">
+            <h3>🌐 Requêtes AJAX</h3>
+            <button id="test-fetch-btn" class="vision-btn">Tester Fetch</button>
+            <p id="fetch-status">⏳ Cliquez pour tester...</p>
+        </div>
+        
+        <div class="test-item">
+            <h3>📍 Informations URL</h3>
+            <p><strong>URL actuelle :</strong> <span id="current-url"></span></p>
+            <p><strong>Environnement :</strong> <span id="environment"></span></p>
+            <p><strong>Base path :</strong> <span id="base-path"></span></p>
+        </div>
+
+        <div class="test-item">
+            <h3>🔗 Test Navigation</h3>
+            <p><a href="/">Accueil</a> | <a href="/essential">Essential</a> | <a href="/business">Business</a> | <a href="/contact">Contact</a></p>
+        </div>
+    </div>
+
+    <script src="../assets/js/inline-loader.js"></script>
+    <script>
+        // Test des assets
+        document.addEventListener('DOMContentLoaded', function() {
+            // Test CSS
+            const testElement = document.createElement('div');
+            testElement.style.display = 'none';
+            testElement.className = 'slide';
+            document.body.appendChild(testElement);
+            
+            const computedStyle = window.getComputedStyle(testElement);
+            const cssLoaded = computedStyle.minHeight === '100vh';
+            
+            document.getElementById('css-status').textContent = cssLoaded ? 
+                '✅ CSS chargé correctement' : '❌ CSS non chargé';
+            document.getElementById('css-test').className += cssLoaded ? ' success' : ' error';
+            
+            // Test JavaScript
+            const jsLoaded = typeof URLHandler !== 'undefined';
+            document.getElementById('js-status').textContent = jsLoaded ? 
+                '✅ JavaScript chargé correctement' : '❌ JavaScript non chargé';
+            document.getElementById('js-test').className += jsLoaded ? ' success' : ' error';
+            
+            // Test simulateur
+            const visionButtons = document.querySelectorAll('.vision-btn');
+            let demoWorking = false;
+            
+            visionButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    visionButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    document.body.className = filter !== 'normal' ? filter : '';
+                    
+                    demoWorking = true;
+                    document.getElementById('demo-status').textContent = '✅ Simulateur fonctionne';
+                    document.getElementById('demo-test').className = 'test-item success';
+                });
+            });
+            
+            setTimeout(() => {
+                if (!demoWorking) {
+                    document.getElementById('demo-status').textContent = '❌ Simulateur ne fonctionne pas';
+                    document.getElementById('demo-test').className = 'test-item error';
+                }
+            }, 2000);
+            
+            // Test fetch
+            document.getElementById('test-fetch-btn').addEventListener('click', async function() {
+                try {
+                    const response = await fetch('/process-order.php', {
+                        method: 'POST',
+                        body: new FormData()
+                    });
+                    
+                    const isDemo = response.status === 200 && response.ok;
+                    document.getElementById('fetch-status').textContent = isDemo ? 
+                        '✅ Fetch fonctionne (mode démo ou production)' : '❌ Fetch ne fonctionne pas';
+                    document.getElementById('fetch-test').className += isDemo ? ' success' : ' error';
+                } catch (error) {
+                    document.getElementById('fetch-status').textContent = '❌ Erreur: ' + error.message;
+                    document.getElementById('fetch-test').className += ' error';
+                }
+            });
+            
+            // Informations URL
+            document.getElementById('current-url').textContent = window.location.href;
+            document.getElementById('environment').textContent = jsLoaded ? 
+                (new URLHandler().isLocal ? 'Local' : 'Production') : 'Inconnu';
+            document.getElementById('base-path').textContent = window.location.origin;
+        });
+    </script>
+</body>
+</html>

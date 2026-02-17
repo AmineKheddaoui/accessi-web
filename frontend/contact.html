@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Accessi-web | Expert en Accessibilite Numerique</title>
+    <meta name="description" content="Contactez Accessi-web pour vos projets d'accessibilite numerique RGAA. Devis gratuit sous 24h.">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="canonical" href="https://accessi-web.com/contact">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- NAVBAR -->
+    <header class="navbar" role="banner">
+        <nav class="navbar__inner" aria-label="Navigation principale">
+            <a href="/" class="navbar__logo" aria-label="Accessi-web - Accueil">
+                <img src="/assets/images/logo/logo_full_blue.webp" alt="Accessi-web" width="160" height="40">
+            </a>
+            <button class="navbar__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu de navigation">
+                <span class="navbar__toggle-bar"></span>
+                <span class="navbar__toggle-bar"></span>
+                <span class="navbar__toggle-bar"></span>
+            </button>
+            <ul class="navbar__menu" id="nav-menu">
+                <li><a href="/">Accueil</a></li>
+                <li class="navbar__dropdown">
+                    <button aria-expanded="false" aria-haspopup="true">Nos Offres</button>
+                    <ul class="navbar__submenu">
+                        <li><a href="/essential">Essential - 99&euro;/page</a></li>
+                        <li><a href="/business">Business - 899&euro;</a></li>
+                        <li><a href="/enterprise">Enterprise - 1999&euro;+</a></li>
+                    </ul>
+                </li>
+                <li><a href="/simulateur">Simulateur</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/a-propos">A propos</a></li>
+            </ul>
+            <a href="/contact" class="navbar__cta btn btn-primary" aria-current="page">Devis gratuit</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+
+        <!-- HERO -->
+        <section class="hero hero--compact">
+            <div class="hero__inner">
+                <h1>Contactez-nous</h1>
+                <p class="hero__subtitle">Parlons de votre projet d'accessibilite. Devis gratuit sous 24h.</p>
+            </div>
+        </section>
+
+        <!-- CONTACT GRID -->
+        <section class="section section--light" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="contact-grid">
+
+                    <!-- Infos -->
+                    <div>
+                        <h2 id="contact-title" class="sr-only">Informations de contact</h2>
+                        <div class="contact-info-list">
+                            <div class="contact-info-card">
+                                <div class="contact-info-card__icon" aria-hidden="true">@</div>
+                                <div>
+                                    <h3 class="contact-info-card__title">Email</h3>
+                                    <p class="contact-info-card__text"><a href="mailto:contact@accessi-web.com">contact@accessi-web.com</a></p>
+                                    <p class="contact-info-card__text">Reponse sous 48h garantie</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="contact-info-card__icon" aria-hidden="true">T</div>
+                                <div>
+                                    <h3 class="contact-info-card__title">Telephone</h3>
+                                    <p class="contact-info-card__text"><a href="tel:+33651199321">+33 6 51 19 93 21</a></p>
+                                    <p class="contact-info-card__text">Lun-Ven 9h-18h</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="contact-info-card__icon" aria-hidden="true">P</div>
+                                <div>
+                                    <h3 class="contact-info-card__title">Localisation</h3>
+                                    <p class="contact-info-card__text">Val d'Oise, Ile-de-France</p>
+                                    <p class="contact-info-card__text">Interventions partout en France</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="contact-info-card__icon" aria-hidden="true">in</div>
+                                <div>
+                                    <h3 class="contact-info-card__title">LinkedIn</h3>
+                                    <p class="contact-info-card__text"><a href="https://www.linkedin.com/company/accessi-web" target="_blank" rel="noopener">Suivez nos actualites</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire -->
+                    <div class="contact-form-card">
+                        <h2 class="contact-form-card__title">Envoyez-nous un message</h2>
+
+                        <form data-endpoint="/process-contact.php" id="contactForm">
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="contact_name">Votre nom <span class="required">*</span></label>
+                                    <input class="form-input" type="text" id="contact_name" name="contact_name" required placeholder="Votre nom">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="contact_email">Email <span class="required">*</span></label>
+                                    <input class="form-input" type="email" id="contact_email" name="contact_email" required placeholder="votre@email.com">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="contact_phone">Telephone</label>
+                                    <input class="form-input" type="tel" id="contact_phone" name="contact_phone" placeholder="Votre telephone">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="contact_subject">Sujet <span class="required">*</span></label>
+                                    <select class="form-select" id="contact_subject" name="contact_subject" required>
+                                        <option value="">Choisir un sujet</option>
+                                        <option value="devis">Demande de devis</option>
+                                        <option value="info">Informations generales</option>
+                                        <option value="urgence">Projet urgent</option>
+                                        <option value="formation">Formation equipe</option>
+                                        <option value="autre">Autre</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="contact_message">Message <span class="required">*</span></label>
+                                <textarea class="form-textarea" id="contact_message" name="contact_message" rows="5" required placeholder="Decrivez votre projet ou vos besoins..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                Envoyer le message
+                            </button>
+                            <p class="text-center text-muted text-sm" style="margin-top: var(--space-md);">
+                                Donnees protegees &bull; Reponse sous 24h &bull; Devis gratuit
+                            </p>
+                        </form>
+
+                        <div class="form-success" role="status">
+                            <div class="form-success__icon">&#10004;</div>
+                            <h3>Message envoye !</h3>
+                            <p class="text-muted">Merci pour votre message. Nous vous repondrons sous 24h.</p>
+                            <a href="/" class="btn btn-outline" style="margin-top: var(--space-lg);">Retour a l'accueil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DISPONIBILITES -->
+        <section class="section section--secondary" aria-labelledby="availability-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="availability-title">Nos delais de reponse</h2>
+                    <p class="text-muted">Nous nous adaptons a vos contraintes pour vous offrir le meilleur service</p>
+                </div>
+                <div class="availability-grid">
+                    <div class="availability-card">
+                        <div class="availability-card__time">24h</div>
+                        <div class="availability-card__desc">Premiere reponse email</div>
+                    </div>
+                    <div class="availability-card">
+                        <div class="availability-card__time">48h</div>
+                        <div class="availability-card__desc">Devis personnalise</div>
+                    </div>
+                    <div class="availability-card">
+                        <div class="availability-card__time">3-5 jours</div>
+                        <div class="availability-card__desc">Audit Essential</div>
+                    </div>
+                    <div class="availability-card">
+                        <div class="availability-card__time">7-10 jours</div>
+                        <div class="availability-card__desc">Audit Business</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__inner">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <img src="/assets/images/logo/logo_full_blue.webp" alt="Accessi-web" width="160" height="40" loading="lazy">
+                    <p>Expert en accessibilite numerique RGAA</p>
+                    <p>Val d'Oise, Ile-de-France</p>
+                </div>
+                <div class="footer__nav">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/a-propos">A propos</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__offers">
+                    <h3>Nos Offres</h3>
+                    <ul>
+                        <li><a href="/essential">Essential</a></li>
+                        <li><a href="/business">Business</a></li>
+                        <li><a href="/enterprise">Enterprise</a></li>
+                    </ul>
+                </div>
+                <div class="footer__contact">
+                    <h3>Contact</h3>
+                    <p><a href="mailto:contact@accessi-web.com">contact@accessi-web.com</a></p>
+                    <p><a href="tel:+33651199321">+33 6 51 19 93 21</a></p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 Accessi-web - Tous droits reserves</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="sr-announcer" aria-live="polite" aria-atomic="true"></div>
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/a11y-toolbar.js"></script>
+    <script src="/assets/js/forms.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

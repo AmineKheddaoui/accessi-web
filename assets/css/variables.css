@@ -1,0 +1,129 @@
+/* ============================================
+   Design Tokens - Accessi-web
+   ============================================ */
+
+:root {
+    /* --- Couleurs --- */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F5F5F5;
+    --bg-dark: #EBEBEB;
+    --bg-accent: #EBEBEB;
+
+    --color-primary: #006B77;
+    --color-primary-dark: #004D57;
+    --color-primary-light: #E6F4F6;
+    --color-secondary: #E6007E;
+    --color-secondary-light: #FCE4EC;
+
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --text-on-dark: #111111;
+    --text-on-dark-muted: #555555;
+
+    --color-warning: #D32F2F;
+    --color-warning-light: #FFF0F0;
+    --color-success: #2E7D32;
+    --color-success-light: #F0FFF0;
+
+    --border-subtle: #E0E0E0;
+    --border-medium: #BDBDBD;
+
+    /* --- Ombres --- */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --shadow-navbar: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    /* --- Typographie --- */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family-dyslexia: 'OpenDyslexic', sans-serif;
+
+    --fs-h1: 2.5rem;
+    --fs-h2: 2rem;
+    --fs-h3: 1.5rem;
+    --fs-h4: 1.25rem;
+    --fs-body-lg: 1.125rem;
+    --fs-body: 1rem;
+    --fs-small: 0.875rem;
+    --fs-xs: 0.75rem;
+
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    --lh-tight: 1.2;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.7;
+
+    /* --- Espacement --- */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 5rem;
+
+    /* --- Layout --- */
+    --container-max: 1200px;
+    --container-padding: 1.5rem;
+    --navbar-height: 72px;
+
+    /* --- Bordures --- */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 50px;
+
+    /* --- Transitions --- */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 400ms ease;
+
+    /* --- Focus --- */
+    --focus-ring: 3px solid var(--color-primary);
+    --focus-offset: 2px;
+}
+
+/* Breakpoints (utilisés via media queries) :
+   --bp-sm: 480px
+   --bp-md: 768px
+   --bp-lg: 1024px
+   --bp-xl: 1280px
+*/
+
+/* ============================================
+   Mode sombre
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #111111;
+        --bg-secondary: #1A1A1A;
+        --bg-dark: #000000;
+        --bg-accent: #000000;
+
+        --color-primary: #4DD0E1;
+        --color-primary-dark: #4DD0E1;
+        --color-primary-light: #1A2E30;
+        --color-secondary-light: #2E1020;
+
+        --text-primary: #E0E0E0;
+        --text-secondary: #9E9E9E;
+        --text-on-dark: #FFFFFF;
+        --text-on-dark-muted: #9E9E9E;
+
+        --color-warning-light: #2E1515;
+        --color-success-light: #152E18;
+
+        --border-subtle: #2A2A2A;
+        --border-medium: #3A3A3A;
+
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+        --shadow-navbar: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+}

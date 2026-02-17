@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur de Vision - Accessi-web | Testez l'Accessibilite</title>
+    <meta name="description" content="Simulez differents types de deficiences visuelles pour comprendre l'importance de l'accessibilite numerique. Outil gratuit.">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="canonical" href="https://accessi-web.com/simulateur">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- SVG Filters for color blindness simulation -->
+    <svg class="sr-only" aria-hidden="true">
+        <defs>
+            <filter id="protanopia">
+                <feColorMatrix type="matrix" values="0.567,0.433,0,0,0 0.558,0.442,0,0,0 0,0.242,0.758,0,0 0,0,0,1,0"/>
+            </filter>
+            <filter id="deuteranopia">
+                <feColorMatrix type="matrix" values="0.625,0.375,0,0,0 0.7,0.3,0,0,0 0,0.3,0.7,0,0 0,0,0,1,0"/>
+            </filter>
+            <filter id="tritanopia">
+                <feColorMatrix type="matrix" values="0.95,0.05,0,0,0 0,0.433,0.567,0,0 0,0.475,0.525,0,0 0,0,0,1,0"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- NAVBAR -->
+    <header class="navbar" role="banner">
+        <nav class="navbar__inner" aria-label="Navigation principale">
+            <a href="/" class="navbar__logo" aria-label="Accessi-web - Accueil">
+                <img src="/assets/images/logo/logo_full_blue.webp" alt="Accessi-web" width="160" height="40">
+            </a>
+            <button class="navbar__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu de navigation">
+                <span class="navbar__toggle-bar"></span>
+                <span class="navbar__toggle-bar"></span>
+                <span class="navbar__toggle-bar"></span>
+            </button>
+            <ul class="navbar__menu" id="nav-menu">
+                <li><a href="/">Accueil</a></li>
+                <li class="navbar__dropdown">
+                    <button aria-expanded="false" aria-haspopup="true">Nos Offres</button>
+                    <ul class="navbar__submenu">
+                        <li><a href="/essential">Essential - 99&euro;/page</a></li>
+                        <li><a href="/business">Business - 899&euro;</a></li>
+                        <li><a href="/enterprise">Enterprise - 1999&euro;+</a></li>
+                    </ul>
+                </li>
+                <li><a href="/simulateur" aria-current="page">Simulateur</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/a-propos">A propos</a></li>
+            </ul>
+            <a href="/contact" class="navbar__cta btn btn-primary">Devis gratuit</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+
+        <!-- HERO -->
+        <section class="hero hero--compact">
+            <div class="hero__inner">
+                <h1>Simulateur de Vision</h1>
+                <p class="hero__subtitle">Decouvrez comment les personnes atteintes de deficiences visuelles percoivent votre site</p>
+            </div>
+        </section>
+
+        <!-- SIMULATEUR -->
+        <section class="section section--light" aria-labelledby="simulator-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="simulator-title">Simuler une deficience visuelle</h2>
+                    <p class="text-muted">Selectionnez un type de daltonisme pour voir son effet sur un exemple de contenu web</p>
+                </div>
+
+                <div class="simulator-controls" role="radiogroup" aria-label="Type de deficience visuelle">
+                    <button class="simulator-btn is-active" data-filter="none" role="radio" aria-checked="true">Vision normale</button>
+                    <button class="simulator-btn" data-filter="protanopia" role="radio" aria-checked="false">Protanopie</button>
+                    <button class="simulator-btn" data-filter="deuteranopia" role="radio" aria-checked="false">Deuteranopie</button>
+                    <button class="simulator-btn" data-filter="tritanopia" role="radio" aria-checked="false">Tritanopie</button>
+                    <button class="simulator-btn" data-filter="achromatopsia" role="radio" aria-checked="false">Achromatopsie</button>
+                </div>
+
+                <div class="simulator-preview">
+                    <div class="simulator-preview__content" id="simulatorPreview">
+                        <div style="display: flex; gap: var(--space-lg); flex-wrap: wrap; justify-content: center;">
+                            <div style="flex: 1; min-width: 200px;">
+                                <h3 style="color: #E53E3E; margin-bottom: var(--space-sm);">Erreur critique</h3>
+                                <p style="color: var(--text-secondary); font-size: var(--fs-small);">Ce champ est obligatoire</p>
+                                <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-md);">
+                                    <span style="display: inline-block; width: 40px; height: 40px; border-radius: var(--radius-sm); background: #E53E3E;"></span>
+                                    <span style="display: inline-block; width: 40px; height: 40px; border-radius: var(--radius-sm); background: #38A169;"></span>
+                                    <span style="display: inline-block; width: 40px; height: 40px; border-radius: var(--radius-sm); background: #3182CE;"></span>
+                                    <span style="display: inline-block; width: 40px; height: 40px; border-radius: var(--radius-sm); background: #D69E2E;"></span>
+                                </div>
+                            </div>
+                            <div style="flex: 1; min-width: 200px;">
+                                <div style="padding: var(--space-md); background: #38A169; color: white; border-radius: var(--radius-sm); margin-bottom: var(--space-sm);">Succes : Formulaire envoye</div>
+                                <div style="padding: var(--space-md); background: #E53E3E; color: white; border-radius: var(--radius-sm); margin-bottom: var(--space-sm);">Erreur : Champ invalide</div>
+                                <div style="padding: var(--space-md); background: #D69E2E; color: white; border-radius: var(--radius-sm);">Attention : Champ manquant</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="simulator-preview__label" id="simulatorLabel">Vision normale - Aucun filtre applique</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AVANT / APRES -->
+        <section class="section section--secondary" aria-labelledby="demo-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="demo-title">Avant / Apres accessibilite</h2>
+                    <p class="text-muted">Exemples concrets d'ameliorations d'accessibilite</p>
+                </div>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <div class="demo-card__header">
+                            <button class="demo-card__tab is-active" data-panel="contrast-before">Avant</button>
+                            <button class="demo-card__tab" data-panel="contrast-after">Apres</button>
+                        </div>
+                        <div class="demo-card__content">
+                            <div class="demo-card__panel is-active" id="contrast-before">
+                                <h3 class="demo-card__title">Contraste insuffisant</h3>
+                                <p style="color: #ccc; background: #fff; padding: var(--space-md); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                                    Ce texte a un contraste de 1.6:1 seulement. Illisible pour beaucoup d'utilisateurs.
+                                </p>
+                            </div>
+                            <div class="demo-card__panel" id="contrast-after">
+                                <h3 class="demo-card__title">Contraste corrige (4.5:1+)</h3>
+                                <p style="color: #1A1A2E; background: #fff; padding: var(--space-md); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                                    Ce texte respecte le ratio WCAG AA de 4.5:1 minimum. Lisible par tous.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="demo-card">
+                        <div class="demo-card__header">
+                            <button class="demo-card__tab is-active" data-panel="alt-before">Avant</button>
+                            <button class="demo-card__tab" data-panel="alt-after">Apres</button>
+                        </div>
+                        <div class="demo-card__content">
+                            <div class="demo-card__panel is-active" id="alt-before">
+                                <h3 class="demo-card__title">Image sans texte alternatif</h3>
+                                <code style="display: block; padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-sm); font-size: var(--fs-small);">&lt;img src="photo.jpg"&gt;</code>
+                                <p class="text-muted text-sm" style="margin-top: var(--space-sm);">Les lecteurs d'ecran ne peuvent pas decrire cette image.</p>
+                            </div>
+                            <div class="demo-card__panel" id="alt-after">
+                                <h3 class="demo-card__title">Image avec alt descriptif</h3>
+                                <code style="display: block; padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-sm); font-size: var(--fs-small);">&lt;img src="photo.jpg" alt="Equipe en reunion"&gt;</code>
+                                <p class="text-muted text-sm" style="margin-top: var(--space-sm);">Le lecteur d'ecran annonce clairement le contenu.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="demo-card">
+                        <div class="demo-card__header">
+                            <button class="demo-card__tab is-active" data-panel="form-before">Avant</button>
+                            <button class="demo-card__tab" data-panel="form-after">Apres</button>
+                        </div>
+                        <div class="demo-card__content">
+                            <div class="demo-card__panel is-active" id="form-before">
+                                <h3 class="demo-card__title">Formulaire sans labels</h3>
+                                <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                                    <input type="text" placeholder="Entrez votre nom" style="width: 100%; padding: var(--space-sm); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);">
+                                </div>
+                                <p class="text-muted text-sm" style="margin-top: var(--space-sm);">Le placeholder disparait a la saisie, pas de label pour le lecteur d'ecran.</p>
+                            </div>
+                            <div class="demo-card__panel" id="form-after">
+                                <h3 class="demo-card__title">Formulaire avec labels</h3>
+                                <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                                    <label style="display: block; font-weight: 600; margin-bottom: 4px; font-size: var(--fs-small);">Votre nom *</label>
+                                    <input type="text" placeholder="Jean Dupont" style="width: 100%; padding: var(--space-sm); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);">
+                                </div>
+                                <p class="text-muted text-sm" style="margin-top: var(--space-sm);">Le label reste visible et identifie le champ pour tous.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPACT -->
+        <section class="section section--light" aria-labelledby="impact-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="impact-title">L'impact de l'accessibilite</h2>
+                </div>
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <div class="impact-card__number">12M</div>
+                        <div class="impact-card__label">Personnes en situation de handicap en France</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-card__number">8%</div>
+                        <div class="impact-card__label">De la population masculine est daltonienne</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-card__number">+30%</div>
+                        <div class="impact-card__label">D'amelioration SEO avec un site accessible</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section section--gradient" aria-labelledby="cta-title">
+            <div class="container" style="text-align: center;">
+                <h2 id="cta-title">Votre site est-il accessible ?</h2>
+                <p class="text-muted" style="max-width: 500px; margin: 0 auto var(--space-xl);">Faites auditer votre site par nos experts et obtenez un rapport detaille avec des recommandations concretes.</p>
+                <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+                    <a href="/contact" class="btn btn-secondary btn-lg">Demander un audit</a>
+                    <a href="/essential" class="btn btn-outline-light btn-lg">Decouvrir nos offres</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__inner">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <img src="/assets/images/logo/logo_full_blue.webp" alt="Accessi-web" width="160" height="40" loading="lazy">
+                    <p>Expert en accessibilite numerique RGAA</p>
+                    <p>Val d'Oise, Ile-de-France</p>
+                </div>
+                <div class="footer__nav">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/a-propos">A propos</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__offers">
+                    <h3>Nos Offres</h3>
+                    <ul>
+                        <li><a href="/essential">Essential</a></li>
+                        <li><a href="/business">Business</a></li>
+                        <li><a href="/enterprise">Enterprise</a></li>
+                    </ul>
+                </div>
+                <div class="footer__contact">
+                    <h3>Contact</h3>
+                    <p><a href="mailto:contact@accessi-web.com">contact@accessi-web.com</a></p>
+                    <p><a href="tel:+33651199321">+33 6 51 19 93 21</a></p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 Accessi-web - Tous droits reserves</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="sr-announcer" aria-live="polite" aria-atomic="true"></div>
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/a11y-toolbar.js"></script>
+    <script src="/assets/js/simulator.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

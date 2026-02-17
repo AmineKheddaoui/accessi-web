@@ -1,0 +1,88 @@
+/* ============================================
+   Typographie
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/opendyslexic');
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-tight);
+    margin-bottom: var(--space-md);
+}
+
+h1 {
+    font-size: var(--fs-h1);
+}
+
+h2 {
+    font-size: var(--fs-h2);
+}
+
+h3 {
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-semibold);
+}
+
+h4 {
+    font-size: var(--fs-h4);
+    font-weight: var(--fw-semibold);
+}
+
+p {
+    margin-bottom: var(--space-md);
+    line-height: var(--lh-relaxed);
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+.text-lg {
+    font-size: var(--fs-body-lg);
+}
+
+.text-sm {
+    font-size: var(--fs-small);
+}
+
+.text-xs {
+    font-size: var(--fs-xs);
+}
+
+.text-center { text-align: center; }
+.text-muted { color: var(--text-secondary); }
+.text-primary-color { color: var(--color-primary-dark); }
+.text-secondary-color { color: var(--color-secondary); }
+.text-warning { color: var(--color-warning); }
+
+strong, .fw-bold { font-weight: var(--fw-bold); }
+.fw-semibold { font-weight: var(--fw-semibold); }
+.fw-medium { font-weight: var(--fw-medium); }
+
+/* Texte sur fonds sombres */
+.section--dark h1,
+.section--dark h2,
+.section--dark h3,
+.section--dark h4,
+.section--dark p,
+.section--gradient h1,
+.section--gradient h2,
+.section--gradient h3,
+.section--gradient h4,
+.section--gradient p {
+    color: var(--text-on-dark);
+}
+
+.section--dark .text-muted,
+.section--gradient .text-muted {
+    color: var(--text-on-dark-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: clamp(1.75rem, 6vw, 2.25rem); }
+    h2 { font-size: clamp(1.5rem, 5vw, 1.85rem); }
+    h3 { font-size: clamp(1.2rem, 4vw, 1.4rem); }
+}

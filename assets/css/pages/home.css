@@ -1,0 +1,92 @@
+/* ============================================
+   Page Accueil
+   ============================================ */
+
+/* Services grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+}
+
+.services-grid .card__icon {
+    font-size: 2rem;
+}
+
+/* Pricing grid */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    align-items: start;
+}
+
+/* SEO benefits */
+.seo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+}
+
+/* Trust section */
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+    align-items: center;
+}
+
+.trust-quote {
+    font-size: var(--fs-body-lg);
+    font-style: italic;
+    color: var(--text-secondary);
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--space-xl);
+}
+
+/* CTA final */
+.cta-final {
+    text-align: center;
+}
+
+.cta-final h2 {
+    margin-bottom: var(--space-md);
+}
+
+.cta-final .promo {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-full);
+    font-size: var(--fs-body-lg);
+    font-weight: var(--fw-semibold);
+    margin-bottom: var(--space-xl);
+}
+
+/* Counter animation */
+.stat-counter {
+    transition: opacity 0.3s;
+}
+
+.stat-counter.is-visible {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .services-grid,
+    .pricing-grid,
+    .seo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trust-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .services-grid,
+    .seo-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
