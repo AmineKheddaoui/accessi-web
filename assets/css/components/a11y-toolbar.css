@@ -17,7 +17,7 @@
     height: 56px;
     border-radius: 50%;
     border: 2px solid var(--color-primary-dark);
-    background: #1a1a1a;
+    background: var(--color-primary-dark);
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
@@ -26,7 +26,8 @@
 }
 
 .a11y-toolbar__toggle:hover {
-    background: var(--color-primary-dark);
+    background: var(--color-primary);
+    border-color: var(--color-primary);
     transform: scale(1.05);
 }
 
