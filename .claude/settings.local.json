@@ -23,7 +23,8 @@
       "Bash(start http://localhost:3000/test-auth-flow.html)",
       "Bash(taskkill:*)",
       "Bash(wmic process where:*)",
-      "Bash(php -v:*)"
+      "Bash(php -v:*)",
+      "Bash(cmd.exe /c \"where /r C:\\\\ php.exe 2>nul\")"
     ],
     "deny": [],
     "ask": []
