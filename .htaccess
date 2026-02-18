@@ -35,7 +35,7 @@ RewriteRule ^process-order\.php$ backend/php/process-order.php [L]
 RewriteRule ^process-contact\.php$ backend/php/process-contact.php [L]
 
 # Page d'accueil
-RewriteRule ^$ frontend/index.html [L]
+RewriteRule ^$ /frontend/index.html [L]
 RewriteRule ^home/?$ /frontend/index.html [NC,L]
 
 # Pages principales → frontend/
