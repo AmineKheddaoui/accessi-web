@@ -17,7 +17,7 @@
     height: 56px;
     border-radius: 50%;
     border: 2px solid var(--color-primary-dark);
-    background: var(--bg-dark);
+    background: #1a1a1a;
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
@@ -39,7 +39,7 @@
     position: absolute;
     bottom: 68px;
     right: 0;
-    background: var(--bg-dark);
+    background: #1a1a1a;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
