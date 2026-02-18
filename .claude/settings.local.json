@@ -24,7 +24,8 @@
       "Bash(taskkill:*)",
       "Bash(wmic process where:*)",
       "Bash(php -v:*)",
-      "Bash(cmd.exe /c \"where /r C:\\\\ php.exe 2>nul\")"
+      "Bash(cmd.exe /c \"where /r C:\\\\ php.exe 2>nul\")",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []
