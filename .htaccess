@@ -34,10 +34,6 @@ RewriteRule ^(debug-ovh|test-assets)\.html$ tests/$0 [L]
 RewriteRule ^process-order\.php$ backend/php/process-order.php [L]
 RewriteRule ^process-contact\.php$ backend/php/process-contact.php [L]
 
-# Page d'accueil
-RewriteRule ^$ /frontend/index.html [L]
-RewriteRule ^home/?$ /frontend/index.html [NC,L]
-
 # Pages principales → frontend/
 RewriteRule ^essential/?$ frontend/essential.html [NC,L]
 RewriteRule ^business/?$ frontend/business.html [NC,L]

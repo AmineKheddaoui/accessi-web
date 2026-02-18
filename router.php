@@ -28,7 +28,7 @@ if (isset($phpRoutes[$uri])) {
 
 // --- Clean URL -> HTML pages ---
 $pages = [
-    '/'          => '/frontend/index.html',
+    '/'          => '/index.html',
     '/essential' => '/frontend/essential.html',
     '/business'  => '/frontend/business.html',
     '/enterprise'=> '/frontend/enterprise.html',
