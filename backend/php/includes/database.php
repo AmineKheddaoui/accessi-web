@@ -16,19 +16,21 @@ class Database {
 
     public function getConnection() {
         $this->conn = null;
-        
+
+        // 'localhost' force le socket Unix (indisponible sur OVH) — on bascule sur TCP/IP
+        $host = ($this->host === 'localhost') ? '127.0.0.1' : $this->host;
+
         try {
             $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
+                "mysql:host={$host};dbname={$this->db_name};charset=utf8",
                 $this->db_user,
                 $this->db_pass
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->conn->exec("set names utf8");
         } catch(PDOException $exception) {
             throw $exception;
         }
-        
+
         return $this->conn;
     }
 
